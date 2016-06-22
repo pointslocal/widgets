@@ -10,7 +10,7 @@ MeyerWeb Reset
 *******************************************************************************/
 
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+ h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -49,6 +49,14 @@ body {
 
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 #header_wrap, #footer_wrap {
   background-color: #292c38;
   padding: 40px;
@@ -67,11 +75,14 @@ header.inner, #main_content_wrap, footer.inner, .jumbotron {
 }
 
 #footer_wrap {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   padding: 10px;
   background-color: #363b48;
   border-top: 1px solid rgba(255,255,255,.1);
   width: calc(100% - 20px);
   color: #fff;
+}
+footer a {
+  color: #eee;
 }
