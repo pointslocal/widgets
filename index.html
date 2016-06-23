@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Widgets : Widgets Gallery">
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+    <script src="javascripts/pointslocal.widgets.js"></script>
     <title>Pointslocal Events Widgets</title>
   </head>
 
@@ -38,6 +40,12 @@
 
       <section id="main_content" class="inner">
           <h1>Example: Upcoming Events</h1>
+          <div style="display:none;" id="widget-upcoming-template">
+            {{#items}}
+              <div class="plw-item">{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=80&h=80&context=event.image" /></div>{{/image_id}}<div class="plw-cell"><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div></div></div>
+            {{/items}}
+          </div>
+          <div id="widget-upcoming" class="widget"></div>
       </section>
 
       <section id="main_content" class="inner">
@@ -63,7 +71,13 @@
         <p class="copyright">Widgets maintained by <a href="https://github.com/pointslocal">pointslocal</a></p>
       </footer>
     </div>
-
+    <script>
+      var w1 = new Pointslocal('#widget-upcoming', {
+        site:'sfgate',
+        widget: 'upcoming',
+        templateSelector: '#widget-upcoming-template'
+      });
+    </script>
     
 
   </body>

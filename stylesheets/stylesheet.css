@@ -86,3 +86,35 @@ header.inner, #main_content_wrap, footer.inner, .jumbotron {
 footer a {
   color: #eee;
 }
+
+
+
+
+/* Widgets */
+.widget {
+  width: 400px;
+  margin: auto;
+  border: 1px solid #C3CDE6;
+  border-radius: 1px;
+}
+.plw-item {
+
+  font-size: 15px;
+  border-bottom: 1px solid #C3CDE6;
+  display: flex;
+  flex-direction: row;
+}
+.plw-item .plw-item-title {
+  font-family: 'Lato';
+  font-weight: 800;
+  font-size: 20px;
+}
+.plw-item a.plw-item-title {
+  color: #333;
+}
+.plw-cell {
+  padding: 8px;
+}
+.plw-item-meta {
+  font-size: 12px;
+}
