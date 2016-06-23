@@ -26,7 +26,7 @@ var Pointslocal = function(element,opts) {
   }
 
   this.get = function() {
-    var call = 'http://'+this.site+'.pointslocal.com/api/v1/events';
+    var call = 'https://'+this.site+'.pointslocal.com/api/v1/events';
     $.getJSON(call, function(d) {
       self.rendered = Mustache.render(self.template, d);
       $(self.element).html(self.rendered);
