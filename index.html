@@ -40,6 +40,13 @@
 
       <section id="main_content" class="inner">
           <h1>Example: Upcoming Events</h1>
+<pre class="code">
+  var w1 = new Pointslocal('#widget-upcoming', {
+    site:'sfgate',
+    widget: 'upcoming',
+    templateSelector: '#widget-upcoming-template'
+  });
+</pre>
           <div style="display:none;" id="widget-upcoming-template">
             {{#items}}
               <div class="plw-item">{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image" /></div>{{/image_id}}<div class="plw-cell"><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div></div></div>

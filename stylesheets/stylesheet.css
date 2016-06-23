@@ -87,6 +87,13 @@ footer a {
   color: #eee;
 }
 
+.code {
+  font-family: monospace;
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  margin-bottom: 10px;
+}
 
 
 
