@@ -8,12 +8,13 @@ var Pointslocal = function(element,opts) {
   this.template = '';
   this.rendered = '';
   this.templateSelector = false;
-
+  this.opts = [];
   self = this;
 
   this.construct = function(opts) {
     for (k in opts) {
       this[k] = opts[k];
+      this.opts[k] = opts[k]
     }
     if (this.templateSelector) {
       this.templateFromSelector();
@@ -26,7 +27,11 @@ var Pointslocal = function(element,opts) {
   }
 
   this.get = function() {
-    var call = 'https://'+this.site+'.pointslocal.com/api/v1/events';
+    var c = [];
+    for (k in this.opts) {
+      c.push(k+"="+this.opts[k]);
+    }
+    var call = 'https://'+this.site+'.pointslocal.com/api/v1/events?'+c.join('&');
     $.getJSON(call, function(d) {
       self.rendered = Mustache.render(self.template, d);
       $(self.element).html(self.rendered);

@@ -89,12 +89,19 @@ footer a {
 
 .code {
   font-family: monospace;
-  background-color: #333;
+  background-color: #444;
   color: #fff;
-  padding: 8px;
+  margin: auto;
+  border: 1px solid #111;
   margin-bottom: 10px;
+  width: 400px;
+  font-size: 12px;
+  border-radius: 1px;
+  line-height: 1.5;
 }
-
+.code pre {
+  padding: 8px;
+}
 
 
 /* Widgets */
