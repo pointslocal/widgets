@@ -112,11 +112,20 @@ footer a {
   border-radius: 1px;
 }
 .plw-item {
-
+  position: relative;
   font-size: 15px;
   border-bottom: 1px solid #C3CDE6;
   display: flex;
   flex-direction: row;
+}
+.plw-item-card {
+  position: absolute;
+  background-color: rgba(20,20,20,.8);
+  color: #fff;
+  left: 0px;
+  bottom: 0px;
+  padding: 10px;
+  width: calc(100% - 20px);
 }
 .plw-item .plw-item-title {
   font-family: 'Lato';
