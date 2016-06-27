@@ -34,6 +34,36 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
 
+
+      <section id="main_content" class="inner">
+          <h1>Example: Search</h1>
+<div class="code">
+<pre>
+  var w1 = new Pointslocal('#widget-upcoming', {
+    site:'sfgate',
+    widget: 'search',
+    templateSelector: '#widget-search-template'
+  });</pre>
+</div>
+
+<!-- <option>{{event_category_name}}</option> -->
+          <div style="display:none;" id="widget-search-template">
+            <div class="plw-search plw-item">
+              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">What <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">Where <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">When <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell"><input type="text" class="plw-textbox" placeholder="Search, eg 'Something'"/></div>
+              <div class="plw-cell"><a class="plw-button">Search</a></div>
+            </div>
+
+          </div>
+          <div id="widget-search" class="widget">
+
+
+          </div>
+    
+      </section>
+
       <section id="main_content" class="inner">
           <h1>Requirements</h1>
       </section>
@@ -56,41 +86,7 @@
           <div id="widget-upcoming" class="widget"></div>
       </section>
 
-      <section id="main_content" class="inner">
-          <h1>Example: Search</h1>
-<div class="code">
-<pre>
-  var w1 = new Pointslocal('#widget-upcoming', {
-    site:'sfgate',
-    widget: 'search',
-    templateSelector: '#widget-search-template'
-  });</pre>
-</div>
 
-<!-- <option>{{event_category_name}}</option> -->
-          <div style="display:none;" id="widget-search-template">
-            <div class="plw-search plw-item">
-              <div class="plw-cell"><div class="plw-pseudo-drop">What</div></div>
-              <div class="plw-cell"><div class="plw-pseudo-drop">Where</div></div>
-              <div class="plw-cell"><div class="plw-pseudo-drop">When</div></div>
-              <div class="plw-cell"><input type="text"  placeholder="Search, eg 'Something'"/></div>
-              <div class="plw-cell"><input type="text" /></div>
-            </div>
-            <div class="plw-search-options">
-              <div class="plw-search-options-what plw-item">
-              {{#categories:groups}}
-
-              {{/categories:groups}}
-              </div>
-
-            </div>
-          </div>
-          <div id="widget-search" class="widget">
-
-
-          </div>
-    
-      </section>
 
       <section id="main_content" class="inner">
           <h1>Example: Curated Events</h1>
@@ -107,10 +103,10 @@
 </div>
             <div style="display:none;" id="widget-curated-template">
               {{#items}}
-                <div class="plw-item">{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image" /></div>{{/image_id}}<div class="plw-cell"><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div></div></div>
+                <div class="plw-item">{{#image_id}}<div class="plw-cell"><div class="plw-ribbon-container"><div class="plw-ribbon pick">EDITOR'S PICK</div></div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image" /></div>{{/image_id}}<div class="plw-cell"><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div><p>{{print_description}}</p></div></div>
               {{/items}}
             </div>
-            <div id="widget-curated" class="widget"></div>
+            <div id="widget-curated" class="pointslocal-widget"></div>
 
 
       </section>
@@ -119,10 +115,10 @@
           <h1>Example: Featured Events</h1>
           <div style="display:none;" id="widget-featured-template">
             {{#items}}
-              <div class="plw-item">{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image" style="max-width: 100%;"/></div>{{/image_id}}<div class='plw-item-card'>{{title}} - {{venue_name}}</div></div>
+              <div class="plw-item"><div class="plw-ribbon-container"><div class="plw-ribbon">FEATURED</div></div>{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image" style="max-width: 100%;"/></div>{{/image_id}}<div class='plw-item-card'><a class="plw-item-title">{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>
             {{/items}}
           </div>
-          <div id="widget-featured" class="widget"></div>
+          <div id="widget-featured" class="pointslocal-widget pointslocal-widget-rail"></div>
       </section>
       <section id="main_content" class="inner">
           <h1>Customization</h1>

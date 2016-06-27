@@ -14,6 +14,12 @@ var PointslocalTemplates = function() {
 
 }
 
+var PointslocalIcons = function() {
+  this.chevron = function() {
+    return '<svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"/></svg>';
+  }
+}
+
 var Pointslocal = function(element,opts) {
   this.site = '';
   this.type = '';
@@ -38,6 +44,7 @@ var Pointslocal = function(element,opts) {
       this.template = this.templateSet[this.type];
     }
     this.templateSet = new PointslocalTemplates;
+    this.iconSet = new PointslocalIcons;
     this.get();
   }
 
@@ -56,20 +63,30 @@ var Pointslocal = function(element,opts) {
     $.getJSON(call, (function(self) {
       // console.log(self.template);
         return function (d) {
+          d['icon:chevron'] = self.iconSet.chevron();
+
           if (self.chunk && self.chunk.length > 0) {
             for (k in self.chunk) {
               // check!
               key = self.chunk[k].field;
               newKey = key + ':'
               tmp = arrChunk(d[key],self.chunk[k].groups);
+              d[newKey+'groups'] = [];
               for (var i = 0; i < tmp.length; i++) {
                 d[newKey+(i+1)] = tmp[i];
+                d[newKey+'groups'].push(tmp[i]);
               }
             }
           }
           console.log(d);
           self.rendered = Mustache.render(self.template, d);
           $(self.element).html(self.rendered);
+          $('.plw-pseudo-drop-inner').on('click',function() {
+            var show = ($(this).hasClass('active') ? false : true);
+            $('.plw-pseudo-drop-inner').removeClass('active');
+            if (show) { $(this).addClass('active'); }
+
+          });
         };
     })(this));
 
