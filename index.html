@@ -66,10 +66,30 @@
     templateSelector: '#widget-search-template'
   });</pre>
 </div>
+
+<!-- <option>{{event_category_name}}</option> -->
           <div style="display:none;" id="widget-search-template">
-            SEARCH <select>{{#categories}}<option>{{event_category_name}}</option>{{/categories}}</select> <select>{{#neighborhoods}}<option>{{neighborhood_name}}</option>{{/neighborhoods}}</select>
+            <div class="plw-search plw-item">
+              <div class="plw-cell"><div class="plw-pseudo-drop">What</div></div>
+              <div class="plw-cell"><div class="plw-pseudo-drop">Where</div></div>
+              <div class="plw-cell"><div class="plw-pseudo-drop">When</div></div>
+              <div class="plw-cell"><input type="text"  placeholder="Search, eg 'Something'"/></div>
+              <div class="plw-cell"><input type="text" /></div>
+            </div>
+            <div class="plw-search-options">
+              <div class="plw-search-options-what plw-item">
+              {{#categories:groups}}
+
+              {{/categories:groups}}
+              </div>
+
+            </div>
           </div>
-          <div id="widget-search" class="widget"></div>
+          <div id="widget-search" class="widget">
+
+
+          </div>
+    
       </section>
 
       <section id="main_content" class="inner">
@@ -79,8 +99,9 @@
   <pre>
   var w1 = new Pointslocal('#widget-curated', {
     site:'sfgate',
+    count: 1,
     widget: 'upcoming',
-    tag: 'editor',
+    tag: 'editorpicks',
     templateSelector: '#widget-curated-template'
   });</pre>
 </div>
@@ -128,6 +149,7 @@
         type: 'search',
         site:'sfgate',
         count: 1,
+        chunk: [{'field': 'categories','groups':10 }],
         templateSelector: '#widget-search-template'
       });
 
@@ -135,6 +157,7 @@
         type: 'events',
         site:'sfgate',
         count: 1,
+        tag: 'editorpicks',
         templateSelector: '#widget-curated-template'
       });
 

@@ -105,6 +105,9 @@ footer a {
 
 
 /* Widgets */
+.plw-hidden {
+  display: none !important;
+}
 .widget {
   width: 400px;
   margin: auto;
@@ -117,6 +120,20 @@ footer a {
   border-bottom: 1px solid #C3CDE6;
   display: flex;
   flex-direction: row;
+}
+.plw-search {
+  background-color: #C3CDE6;
+}
+.plw-pseudo-drop {
+  border: 1px solid #000;
+  padding: 4px;
+  border-radius: 1px;
+  transition: all 200ms ease-in;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.plw-pseudo-drop:hover {
+  background-color: #adb6cc;
 }
 .plw-item-card {
   position: absolute;
