@@ -124,10 +124,70 @@ footer a {
   display: flex;
   flex-direction: row;
 }
+
+.plw-row {
+  display: flex;
+  flex-direction: row;
+    flex-flow: row wrap;
+    margin: 0 auto;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+  width: 100%;
+justify-content: flex-start;
+position: relative;
+}
+.plw-row-reverse {
+   flex-direction: row-reverse;
+}
+.plw-cell--12-col {
+      width: calc(100% - 16px);
+}
+.plw-cell--11-col {
+  width: calc(91.6666666667% - 16px);
+}
+.plw-cell--10-col {
+  width: calc(83.3333333333% - 16px);
+}
+.plw-cell--9-col {
+    width: calc(75% - 16px);
+}
+.plw-cell--8-col {
+    width: calc(66.6666666667% - 16px);
+}
+.plw-cell--7-col {
+  width: calc(58.3333333333% - 16px);
+}
+.plw-cell--6-col {
+      width: calc(50% - 16px);
+}
+.plw-cell--5-col {
+    width: calc(41.6666666667% - 16px);
+}
+.plw-cell--4-col {
+width: calc(33.3333333333% - 16px);
+}
+.plw-cell--3-col {
+    width: calc(25% - 16px);
+}
+.plw-cell--2-col {
+      width: calc(16.6666666667% - 16px);
+}
+.plw-cell--1-col {
+  width: calc(8.3333333333% - 16px);
+}
+.plw-cell {
+  margin: 8px;
+
+}
+
+
+
 .plw-cell-item {
   position: relative;
 }
 .plw-ribbon-container {
+  z-index: 9999;
   position: absolute;
   top: 0px;
   right: 0px;
@@ -213,6 +273,10 @@ footer a {
   left: -1px;
   width: 200%;
 }
+.plw-pseudo-drop-options ul {
+  max-height: 200px;
+  overflow-y: scroll;
+}
 .plw-pseudo-drop-options li {
   padding: 4px;
   padding-left: 8px;
@@ -260,7 +324,7 @@ footer a {
   font-size: 20px;
 }
 .plw-item-card-mini {
-  font-size: 12px;
+  font-size: 12px;  
 }
 .plw-item-card-mini .plw-item-title {
   font-size: 16px;
@@ -274,7 +338,7 @@ footer a {
 }
 .plw-cell {
   position: relative;
-  padding: 8px;
+
 }
 .plw-cell .plw-item-card {
   left: 8px;

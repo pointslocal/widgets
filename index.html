@@ -27,7 +27,7 @@
 
     <div id="jumbotron_wrap">
       <div class="jumbotron">
-          ...
+          Here you'll find standard 
       </div>
     </div>
 
@@ -50,7 +50,7 @@
           <div id="widget-search-preview-template" style="display:none;">
             <div class="plw-item">
                 {{#items}}
-                  <div class="plw-cell">
+                  <div class="plw-cell" style="min-height: 200px;">
                     <div class="plw-cell-item">
                     {{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image" /></div>{{/image_id}}
                   </div>
@@ -115,7 +115,7 @@
 </div>
             <div style="display:none;" id="widget-curated-template">
               {{#items}}
-                <div class="plw-item">{{#image_id}}<div class="plw-cell"><div class="plw-ribbon-container"><div class="plw-ribbon pick">EDITOR'S PICK</div></div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image" /></div>{{/image_id}}<div class="plw-cell"><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div><p>{{print_description}}</p></div></div>
+                <div class="plw-item">{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image" /></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class="plw-ribbon-container"><div class="plw-ribbon pick">EDITOR'S PICK</div></div><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div><p>{{print_description}}</p></div></div>
               {{/items}}
             </div>
             <div id="widget-curated" class="pointslocal-widget"></div>
@@ -127,7 +127,7 @@
           <h1>Example: Featured Events</h1>
           <div style="display:none;" id="widget-featured-template">
             {{#items}}
-              <div class="plw-item"><div class="plw-ribbon-container"><div class="plw-ribbon">FEATURED</div></div>{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image" style="max-width: 100%;"/></div>{{/image_id}}<div class='plw-item-card'><a class="plw-item-title">{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>
+              <div class="plw-row"><div class="plw-ribbon-container"><div class="plw-ribbon">FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image" style="max-width: 100%;"/></div>{{/image_id}}<div class='plw-item-card'><a class="plw-item-title">{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>
             {{/items}}
           </div>
           <div id="widget-featured" class="pointslocal-widget pointslocal-widget-rail"></div>
