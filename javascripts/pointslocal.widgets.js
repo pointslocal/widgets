@@ -18,9 +18,12 @@ var PointslocalIcons = function() {
   this.chevron = function() {
     return '<svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"/></svg>';
   }
+  this.microphone = function() {
+    return '<svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1472 704v128q0 221-147.5 384.5t-364.5 187.5v132h256q26 0 45 19t19 45-19 45-45 19h-640q-26 0-45-19t-19-45 19-45 45-19h256v-132q-217-24-364.5-187.5t-147.5-384.5v-128q0-26 19-45t45-19 45 19 19 45v128q0 185 131.5 316.5t316.5 131.5 316.5-131.5 131.5-316.5v-128q0-26 19-45t45-19 45 19 19 45zm-256-384v512q0 132-94 226t-226 94-226-94-94-226v-512q0-132 94-226t226-94 226 94 94 226z"/></svg>';
+  }
 }
 
-var Pointslocal = function(element,opts) {
+var Pointslocal = function(element,opts,cb) {
   this.site = '';
   this.type = '';
   this.element = '';
@@ -64,7 +67,7 @@ var Pointslocal = function(element,opts) {
       // console.log(self.template);
         return function (d) {
           d['icon:chevron'] = self.iconSet.chevron();
-
+          d['icon:microphone'] = self.iconSet.microphone();
           if (self.chunk && self.chunk.length > 0) {
             for (k in self.chunk) {
               // check!
@@ -78,20 +81,23 @@ var Pointslocal = function(element,opts) {
               }
             }
           }
-          console.log(d);
+
           self.rendered = Mustache.render(self.template, d);
           $(self.element).html(self.rendered);
-          $('.plw-pseudo-drop-inner').on('click',function() {
+          $(self.element).find('.plw-pseudo-drop-inner').on('click',function() {
             var show = ($(this).hasClass('active') ? false : true);
             $('.plw-pseudo-drop-inner').removeClass('active');
             if (show) { $(this).addClass('active'); }
-
           });
+
+          if (self.cb) {
+            setTimeout(self.cb(), 1);
+          }
         };
     })(this));
 
   }
-
+  self.cb = cb;
   self.element = element;
   this.construct(opts);
 }

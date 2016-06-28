@@ -47,15 +47,22 @@
 </div>
 
 <!-- <option>{{event_category_name}}</option> -->
+          <div id="widget-search-preview-template" style="display:none;">
+            <div class="plw-item">
+                {{#items}}
+                  <div class="plw-cell">{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image" /></div>{{/image_id}}</div>
+                {{/items}}
+            </div>
+          </div>
           <div style="display:none;" id="widget-search-template">
             <div class="plw-search plw-item">
               <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">What <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
               <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">Where <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
               <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">When <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
-              <div class="plw-cell"><input type="text" class="plw-textbox" placeholder="Search, eg 'Something'"/></div>
+              <div class="plw-cell"><input type="text" class="plw-textbox" placeholder="Search, eg 'Something'"/> <i>{{{icon:microphone}}}</i></div>
               <div class="plw-cell"><a class="plw-button">Search</a></div>
             </div>
-
+            <div class="widget-search-preview">???</div>
           </div>
           <div id="widget-search" class="widget">
 
@@ -147,7 +154,17 @@
         count: 1,
         chunk: [{'field': 'categories','groups':10 }],
         templateSelector: '#widget-search-template'
-      });
+      },
+        function() {
+          var w2a = new Pointslocal('.widget-search-preview', {
+        type: 'events',
+        site:'sfgate',
+        count: 5,
+        templateSelector: '#widget-search-preview-template'
+          });
+
+        }
+      );
 
       var w3 = new Pointslocal('#widget-curated', {
         type: 'events',
