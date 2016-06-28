@@ -50,19 +50,24 @@
           <div id="widget-search-preview-template" style="display:none;">
             <div class="plw-item">
                 {{#items}}
-                  <div class="plw-cell">{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image" /></div>{{/image_id}}</div>
+                  <div class="plw-cell">
+                    <div class="plw-cell-item">
+                    {{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image" /></div>{{/image_id}}
+                  </div>
+                  <div class='plw-item-card plw-item-card-mini'><a class="plw-item-title">{{title}}</a> <div>{{date}}, {{start_time}}</div></div>
+                  </div>
                 {{/items}}
             </div>
           </div>
           <div style="display:none;" id="widget-search-template">
             <div class="plw-search plw-item">
-              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">What <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">What <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li data-attribute="category_id" data-value="{{event_category_id}}">{{event_category_name}}</li>{{/categories}}</ul></div></div></div>
               <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">Where <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
               <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">When <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
               <div class="plw-cell"><input type="text" class="plw-textbox" placeholder="Search, eg 'Something'"/> <i>{{{icon:microphone}}}</i></div>
               <div class="plw-cell"><a class="plw-button">Search</a></div>
             </div>
-            <div class="widget-search-preview">???</div>
+            <div class="widget-search-preview"></div>
           </div>
           <div id="widget-search" class="widget">
 
@@ -155,14 +160,20 @@
         chunk: [{'field': 'categories','groups':10 }],
         templateSelector: '#widget-search-template'
       },
-        function() {
+        function(parent) {
           var w2a = new Pointslocal('.widget-search-preview', {
-        type: 'events',
-        site:'sfgate',
-        count: 5,
-        templateSelector: '#widget-search-preview-template'
+            type: 'events',
+            site:'sfgate',
+            count: 4,
+            templateSelector: '#widget-search-preview-template'
           });
-
+          $(parent.element).find('.plw-pseudo-drop-options li').on('click',function() {
+            attr = $(this).attr('data-attribute');
+            val = $(this).attr('data-value');
+            w2a.opts[attr] = val;
+            w2a.get();
+            $(parent.element).find('.plw-pseudo-drop-inner').removeClass('active');
+          });
         }
       );
 

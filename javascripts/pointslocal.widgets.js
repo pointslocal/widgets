@@ -58,11 +58,14 @@ var Pointslocal = function(element,opts,cb) {
   this.get = function() {
     var c = [];
     for (k in this.opts) {
+      if (k == 'templateSelector') {
+        continue;
+      }
       c.push(k+"="+this.opts[k]);
     }
     // console.log('then',self.element); 
     var call = 'https://'+this.site+'.pointslocal.com/api/v1/'+self.type+'?'+c.join('&');
-
+    console.log(call);
     $.getJSON(call, (function(self) {
       // console.log(self.template);
         return function (d) {
@@ -91,7 +94,7 @@ var Pointslocal = function(element,opts,cb) {
           });
 
           if (self.cb) {
-            setTimeout(self.cb(), 1);
+            setTimeout(self.cb(self), 1);
           }
         };
     })(this));

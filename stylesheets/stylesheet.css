@@ -124,6 +124,9 @@ footer a {
   display: flex;
   flex-direction: row;
 }
+.plw-cell-item {
+  position: relative;
+}
 .plw-ribbon-container {
   position: absolute;
   top: 0px;
@@ -212,9 +215,15 @@ footer a {
 }
 .plw-pseudo-drop-options li {
   padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
   border-bottom: 1px solid #eee;
   text-transform: none;
   font-weight: normal;
+  cursor: pointer;
+}
+.plw-pseudo-drop-options li:hover {
+  background-color: #eee;
 }
 .plw-pseudo-drop-options li i {
 
@@ -250,6 +259,13 @@ footer a {
   font-weight: 800;
   font-size: 20px;
 }
+.plw-item-card-mini {
+  font-size: 12px;
+}
+.plw-item-card-mini .plw-item-title {
+  font-size: 16px;
+  font-weight: 400;
+}
 .plw-item-card .plw-item-title {
   color: #fff !important;
 }
@@ -257,7 +273,16 @@ footer a {
   color: #333;
 }
 .plw-cell {
+  position: relative;
   padding: 8px;
+}
+.plw-cell .plw-item-card {
+  left: 8px;
+  bottom: 8px;
+  width: calc(100% - 36px);
+}
+.plw-cell img {
+  max-width: 100%;
 }
 .plw-item-meta {
   font-size: 12px;
