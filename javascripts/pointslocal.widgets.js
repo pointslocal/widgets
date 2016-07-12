@@ -11,7 +11,13 @@ function arrChunk(org,size) {
 }
 
 var PointslocalTemplates = function() {
-
+  this.templates = {
+    'pointslocal.search': '<div class="plw-item plw-search"><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>What <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li data-attribute=category_id data-value={{event_category_id}}>{{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>Where <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li><input type=checkbox> {{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>When <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li><input type=checkbox> {{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><input class=plw-textbox placeholder="Search, eg "> <i>{{{icon:microphone}}}</i></div><div class=plw-cell><a class=plw-button>Search</a></div></div><div class=widget-search-preview></div>',
+    'pointslocal.search.results':'<div class=plw-item>{{#items}}<div class=plw-cell style=min-height:200px><div class=plw-cell-item>{{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}</div><div class="plw-item-card plw-item-card-mini"><a class=plw-item-title>{{title}}</a><div>{{date}}, {{start_time}}</div></div></div>{{/items}}</div>',
+    'pointslocal.upcoming': '{{#items}}<div class=plw-item>{{#image_id}}<div class=plw-cell><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image"></div>{{/image_id}}<div class=plw-cell><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/items}}',
+    'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
+    'pointslocal.upcoming.large': '{{#items}}<div class=plw-row><div class=plw-ribbon-container><div class=plw-ribbon>FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image"style=max-width:100%></div>{{/image_id}}<div class=plw-item-card><a class=plw-item-title>{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>{{/items}}'
+  }
 }
 
 var PointslocalIcons = function() {
@@ -31,22 +37,33 @@ var Pointslocal = function(element,opts,cb) {
   this.rendered = '';
   this.templateSelector = false;
   this.opts = [];
+  this.template;
   this.templateSet;
+  this.maxMobileItems;
+  this.maxItemsCSS = '';
   this.APIParams = ['count','id','guid','recurring','venue','date','range','start','end','image'];
   self = this;
 
-  this.construct = function(opts) {
-
+  this.construct = function(opts) { console.log(opts);
+    this.templateSet = new PointslocalTemplates;
+    if (opts.template) {
+      this.template = this.templateSet.templates[opts.template];
+    }
     for (k in opts) {
+      if (k === 'template') {
+        continue;
+      }
       this[k] = opts[k];
       this.opts[k] = opts[k]
     }
     if (this.templateSelector) {
       this.templateFromSelector();
-    } else {
-      this.template = this.templateSet[this.type];
     }
-    this.templateSet = new PointslocalTemplates;
+    if (this.widget === 'search') {
+
+      this.type = 'search';
+    }
+
     this.iconSet = new PointslocalIcons;
     this.get();
   }
@@ -58,14 +75,17 @@ var Pointslocal = function(element,opts,cb) {
   this.get = function() {
     var c = [];
     for (k in this.opts) {
-      if (k == 'templateSelector') {
+      if (k == 'templateSelector' || k === 'template') {
         continue;
       }
       c.push(k+"="+this.opts[k]);
     }
-    // console.log('then',self.element); 
-    var call = 'https://'+this.site+'.pointslocal.com/api/v1/'+self.type+'?'+c.join('&');
+    if (!self.type || self.type === '') {
+      self.type = 'events';
+    }
+    var call = 'http://'+this.site+'.pointslocal.com/api/v1/'+self.type+'?'+c.join('&')+'&callback=?';
     console.log(call);
+    console.log(this.type);
     $.getJSON(call, (function(self) {
       // console.log(self.template);
         return function (d) {
@@ -84,7 +104,19 @@ var Pointslocal = function(element,opts,cb) {
               }
             }
           }
+          if (d.items) {
+            var i = 1;
+            for(k in d.items) {
+              d.items[k]['site'] = 'http://'+self.site+'.pointslocal.com';
+              d.items[k]['_classname'] = '';
 
+              if (i > self.maxMobileItems) {
+                d.items[k]['_classname'] = self.maxItemsCSS;
+              }
+              i++;
+            }
+          }
+          console.log('template:',self.template);
           self.rendered = Mustache.render(self.template, d);
           $(self.element).html(self.rendered);
           $(self.element).find('.plw-pseudo-drop-inner').on('click',function() {
