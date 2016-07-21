@@ -86,7 +86,7 @@
 <pre>
       var g1 = new Pointslocal('#widget-search', {
         type: 'games',
-        site:'omaha',
+        site:'miami-fl',
         count: 4,
         offset: 0,
         clearcache: 1,
@@ -138,24 +138,27 @@
                 {{/items}}
             </div>
           </div>
-          <div style="display:none;" id="widget-search-template">
-            <div class="plw-search plw-item">
-              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">What <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li data-attribute="category_id" data-value="{{event_category_id}}">{{event_category_name}}</li>{{/categories}}</ul></div></div></div>
-              <div class="plw-cell plw-cell--hidden-phone"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">Where <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
-              <div class="plw-cell plw-cell--hidden-phone"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">When <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
-              <div class="plw-cell plw-cell--hidden-phone"><input type="text" class="plw-textbox" placeholder="Search, eg 'Something'"/> <i>{{{icon:microphone}}}</i></div>
-              <div class="plw-cell"><a class="plw-button">Search</a></div>
-            </div>
-            <div class="widget-search-preview"></div>
-            <div class="widget-branding">powered by <img style="height: 20px;" src="http://cdn.pointslocal.com/pointslocal-logo.svg" /></div>
-          </div>
-          <div id="widget-search" class="widget">
 
-
-          </div>
     
       </section>
 
+
+      <section id="main_content" class="inner">
+          <h1>Standings</h1>
+          <p>The standings widget allows you to specify sport and class and show the records and standings.  Note this requires comprehensive coverage as it calculates standings based on games within a season.</p>
+<div class="code">
+<pre>
+      var g1 = new Pointslocal('#gameplan-standings', {
+        type: 'standings',
+        site:'miami-fl',
+        count: 1,
+        offset: 0,
+        clearcache: 1,
+        dateFormat: 'M j',
+        template: 'gameplan.standings'
+      });</pre>
+</div>
+</section>
 
       <section id="main_content" class="inner">
           <h1>Prebuilt templates</h1>
