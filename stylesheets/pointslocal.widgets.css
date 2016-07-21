@@ -4,31 +4,10 @@ by Jason Costello, @jsncostello
 *******************************************************************************/
 
 @import url(github-light.css);
-
-/*******************************************************************************
-MeyerWeb Reset
-*******************************************************************************/
-
-html, body, div, span, applet, object, iframe,
- h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
+body {
+  padding: 0px;
+  margin: 0px;
 }
-
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -37,11 +16,7 @@ footer, header, hgroup, menu, nav, section {
 
 ol, ul {
   list-style: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+  padding: 0px;
 }
 
 body {
@@ -98,6 +73,7 @@ footer a {
   font-size: 12px;
   border-radius: 1px;
   line-height: 1.5;
+  overflow: scroll;
 }
 .code pre {
   padding: 8px;
@@ -180,7 +156,9 @@ width: calc(33.3333333333% - 16px);
   margin: 8px;
 
 }
-
+.plw-cell--hidden {
+  display: none;
+}
 
 
 .plw-cell-item {
@@ -341,13 +319,49 @@ width: calc(33.3333333333% - 16px);
 
 }
 .plw-cell .plw-item-card {
-  left: 8px;
-  bottom: 8px;
-  width: calc(100% - 36px);
+  bottom: 16px;
 }
 .plw-cell img {
   max-width: 100%;
 }
 .plw-item-meta {
   font-size: 12px;
+}
+
+
+.plw-gp-scoreboard {
+  border: 1px solid #333;
+}
+.plw-gp-header {
+  font-weight:bold;
+}
+
+@media (max-width: 479px) {
+  #header_wrap, #footer_wrap, #jumbotron_wrap { 
+    padding: 20px;
+    font-size: 16px;
+  }
+  header.inner, #main_content_wrap, footer.inner, .jumbotron, .code {
+    width: 100%;
+    margin: auto;
+  }
+  .plw-cell--4-col-phone {
+    width: calc(100% - 16px);
+  }
+  .plw-cell--3-col-phone {
+    width: calc(75% - 16px);
+  }
+  .plw-cell--2-col-phone {
+    width: calc(50% - 16px);
+  }
+  .plw-cell--1-col-phone {
+    width: calc(25% - 16px);
+  }
+  .plw-cell--hidden-phone, .plw--hidden-phone {
+    display: none;
+  }
+  .plw-ribbon-container {
+    bottom: 0px;
+    top: auto;
+  }
 }

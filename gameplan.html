@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Widgets : Widgets Gallery">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/pointslocal.widgets.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+    <script src="javascripts/pointslocal.widgets.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Pointslocal Events Widgets</title>
+    <style>
+    body {
+      margin-bottom: 100px;
+    }
+    #header_wrap, .code, #jumbotron_wrap {
+      background-image: url('/images/chalk.jpg');
+    }
+    #jumbotron_wrap, #footer_wrap {
+      background-color: rgba(0,0,0,.9);
+    }
+    .plw-gp-date {
+      font-size: 10px;
+    }
+    .jumbotron {
+      font-size: 20px;
+      font-weight: normal;
+      line-height: 1.5;
+    }
+    .code {
+      width: 100%;
+    }
+    .code-snippet {
+      font-family: monospace;
+      font-size: 12px;
+      background-color: rgba(255,240,220,.7);
+      padding: 2px;
+    }
+    a {
+      color: #000;
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+
+          <h1 id="project_title"><img src="https://dayton.pointslocal.com/partners/secure/img/logos/pointslocal-logo-admin-small.svg" style="width: 250px;"/></h1>
+          <h2 id="project_tagline">Gameplan Widgets Gallery</h2>
+
+
+        </header>
+    </div>
+
+    <div id="jumbotron_wrap">
+      <div class="jumbotron">
+          <p>Gameplan's widget library provides responsive, deeply-customizable widgets to meet the needs of any sport.  From player cards to scoreboards to brackets to pickems, we've got you covered.</p>  
+
+          <p>Just a few lines of code and you're up and running.  And when it's time to build something truly unique, these widgets are built directly on a robust, flexible REST API, which means there's no limit to what your widgets can do.</p>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+
+      <section id="main_content" class="inner">
+          <h1>Requirements</h1>
+          <p>Gameplan widgets require <a href="https://jquery.com/">jQuery</a> and the Gameplan javascript library.  To use default styles (a responsive grid), also include the gameplan CSS file</p>
+          <p>A minimal installation can be seen with the following:</p>
+          <div class="code"><pre>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="//cdn.pointslocal.com/js/pointslocal.widgets.js"&gt;&lt;/script&gt;
+&lt;link href='//cdn.pointslocal.com/css/pointslocal.widgets.css' rel='stylesheet' type='text/css'&gt;
+          </pre></div>
+      </section>
+      <section id="main_content" class="inner">
+          <h1>Upcoming / Scoreboard</h1>
+          <p>The upcoming/scoreboard widget will show most recent scores or next upcoming games if no recent scores exist.  It updates automatically as games are updated in the admin.</p>
+          <p>Dates and times can be formatted using the <span class='code-snippet'>dateFormat</span> and <span class='code-snippet'>timeFormat</span> parameter</p>
+<div class="code">
+<pre>
+      var g1 = new Pointslocal('#widget-search', {
+        type: 'games',
+        site:'omaha',
+        count: 4,
+        offset: 0,
+        clearcache: 1,
+        dateFormat: 'M j',
+        template: 'gameplan.scoreboard'
+      });</pre>
+</div>
+
+<!-- <option>{{event_category_name}}</option> -->
+  <div id="gameplan-scoreboard-template" style="display:none">
+    <div class="plw-row plw-gp-scoreboard">
+        <div class="plw-cell plw-cell--8-col plw-gp-header">Scoreboard</div>
+        <div class="plw-cell plw-cell--4-col plw-gp-header">Sport</div>
+    {{#items}}<div class="plw-cell plw-cell--3-col">
+
+        <div class="plw-row">
+          <div class="plw-cell plw-cell--8-col">
+            <a href="#">{{away_nickname}}</a>
+          </div>
+          <div class="plw-cell plw-cell--4-col">
+            {{away_score}}
+          </div>
+        </div>
+        <div class="plw-row">
+          <div class="plw-cell plw-cell--8-col">
+            <a href="#">{{home_nickname}}</a>
+          </div>
+          <div class="plw-cell plw-cell--4-col">
+            {{home_score}}
+          </div>
+        </div>
+        <div class="plw-row">
+          <div class="plw-cell plw-cell--8-col">
+          <span class="plw-gp-date">{{date}} @ {{time}}</span>
+          </div>
+        </div>
+    </div>{{/items}}
+    </div>
+  </div>
+          <div id="widget-search-preview-template" style="display:none;">
+            <div class="plw-item plw-row">
+                {{#items}}
+                  <div class="plw-cell plw-cell--3-col plw-cell--2-col-phone {{_classname}}" style="min-height: 200px;">
+                    <div class="plw-cell-item">
+                    {{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=300&h=300&context=event.image" /></div>{{/image_id}}
+                  </div>
+                  <div class='plw-item-card plw-item-card-mini'><a href="{{site}}/event/{{guid}}" class="plw-item-title">{{title}}</a> <div>{{date}}, {{start_time}}</div></div>
+                  </div>
+                {{/items}}
+            </div>
+          </div>
+          <div style="display:none;" id="widget-search-template">
+            <div class="plw-search plw-item">
+              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">What <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li data-attribute="category_id" data-value="{{event_category_id}}">{{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell plw-cell--hidden-phone"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">Where <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell plw-cell--hidden-phone"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">When <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell plw-cell--hidden-phone"><input type="text" class="plw-textbox" placeholder="Search, eg 'Something'"/> <i>{{{icon:microphone}}}</i></div>
+              <div class="plw-cell"><a class="plw-button">Search</a></div>
+            </div>
+            <div class="widget-search-preview"></div>
+            <div class="widget-branding">powered by <img style="height: 20px;" src="http://cdn.pointslocal.com/pointslocal-logo.svg" /></div>
+          </div>
+          <div id="widget-search" class="widget">
+
+
+          </div>
+    
+      </section>
+
+
+      <section id="main_content" class="inner">
+          <h1>Prebuilt templates</h1>
+          <p>You can call each widget with your own design (by using <span class='code-snippet'>templateSelector</span> and a DOM selector ) or used our pre-baked responsive templates with the <span class='code-snippet'>template</span> parameter
+          <div class="code"><pre>
+gameplan.scoreboard   
+gameplan.schedule 
+gameplan.standings
+gameplan.player
+gameplan.team
+gameplan.school
+          </pre></div>
+      </section>
+
+
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Widgets maintained by <a href="https://github.com/pointslocal">pointslocal</a></p>
+      </footer>
+    </div>
+    <script>
+
+
+      var g1 = new Pointslocal('#widget-search', {
+        type: 'games',
+        site:'omaha',
+        count: 4,
+        offset: 0,
+        clearcache: 1,
+        dateFormat: 'M j',
+        templateSelector: '#gameplan-scoreboard-template'
+      });
+
+    </script>
+    
+
+  </body>
+</html>

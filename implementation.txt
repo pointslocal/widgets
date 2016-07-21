@@ -1,0 +1,67 @@
+<script src="//cdn.pointslocal.com/pointslocal.widgets.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.pointslocal.com/pointslocal.widgets.css">
+
+
+<!-- Search widget -->
+<script>
+  var searchWidget = new Pointslocal('[TARGET SELECTOR]', {
+    site:'sfgate',
+    widget: 'search',
+    template: 'pointslocal.search'
+  });
+</script>
+
+
+<!-- Search widget with responsive preview/update -->
+<script>
+  var searchWidget = new Pointslocal('[TARGET SELECTOR]', {
+    site:'sfgate',
+    widget: 'search',
+    template: 'pointslocal.search'
+  },
+    function(parent) {
+      var searchWidgetPreview = new Pointslocal('.widget-search-preview', {
+        type: 'events',
+        site:'sfgate',
+        count: 4,
+        template: 'pointslocal.search.results'
+      });
+      $(parent.element).find('.plw-pseudo-drop-options li').on('click',function() {
+        attr = $(this).attr('data-attribute');
+        val = $(this).attr('data-value');
+        searchWidgetPreview.opts[attr] = val;
+        searchWidgetPreview.get();
+        $(parent.element).find('.plw-pseudo-drop-inner').removeClass('active');
+      });
+    }
+  );
+</script>
+
+<!-- Upcoming widget -->
+<script>
+  var upcomingWidget = new Pointslocal('[TARGET SELECTOR]', {
+    site:'sfgate',
+    widget: 'upcoming',
+    template: 'pointslocal.upcoming'
+  });
+</script>
+
+
+<!-- Curated widget -->
+<script>
+  var curatedWidget = new Pointslocal('[TARGET SELECTOR]', {
+    site:'sfgate',
+    widget: 'upcoming',
+    template: 'pointslocal.upcoming.medium'
+  });
+</script>
+
+<!-- Featured widget -->
+<script>
+  var featuredWidget = new Pointslocal('[TARGET SELECTOR]', {
+    site:'sfgate',
+    widget: 'upcoming',
+    featured: true,
+    template: 'pointslocal.upcoming.large'
+  });
+</script>

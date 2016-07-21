@@ -5,10 +5,11 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Widgets : Widgets Gallery">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/pointslocal.widgets.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
     <script src="javascripts/pointslocal.widgets.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Pointslocal Events Widgets</title>
   </head>
 
@@ -48,13 +49,13 @@
 
 <!-- <option>{{event_category_name}}</option> -->
           <div id="widget-search-preview-template" style="display:none;">
-            <div class="plw-item">
+            <div class="plw-item plw-row">
                 {{#items}}
-                  <div class="plw-cell" style="min-height: 200px;">
+                  <div class="plw-cell plw-cell--3-col plw-cell--2-col-phone {{_classname}}" style="min-height: 200px;">
                     <div class="plw-cell-item">
-                    {{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image" /></div>{{/image_id}}
+                    {{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=300&h=300&context=event.image" /></div>{{/image_id}}
                   </div>
-                  <div class='plw-item-card plw-item-card-mini'><a class="plw-item-title">{{title}}</a> <div>{{date}}, {{start_time}}</div></div>
+                  <div class='plw-item-card plw-item-card-mini'><a href="{{site}}/event/{{guid}}" class="plw-item-title">{{title}}</a> <div>{{date}}, {{start_time}}</div></div>
                   </div>
                 {{/items}}
             </div>
@@ -62,12 +63,13 @@
           <div style="display:none;" id="widget-search-template">
             <div class="plw-search plw-item">
               <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">What <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li data-attribute="category_id" data-value="{{event_category_id}}">{{event_category_name}}</li>{{/categories}}</ul></div></div></div>
-              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">Where <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
-              <div class="plw-cell"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">When <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
-              <div class="plw-cell"><input type="text" class="plw-textbox" placeholder="Search, eg 'Something'"/> <i>{{{icon:microphone}}}</i></div>
+              <div class="plw-cell plw-cell--hidden-phone"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">Where <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell plw-cell--hidden-phone"><div class="plw-pseudo-drop"><div class="plw-pseudo-drop-inner">When <i>{{{icon:chevron}}}</i></div><div class="plw-pseudo-drop-options"><ul>{{#categories}}<li><input type="checkbox"> {{event_category_name}}</li>{{/categories}}</ul></div></div></div>
+              <div class="plw-cell plw-cell--hidden-phone"><input type="text" class="plw-textbox" placeholder="Search, eg 'Something'"/> <i>{{{icon:microphone}}}</i></div>
               <div class="plw-cell"><a class="plw-button">Search</a></div>
             </div>
             <div class="widget-search-preview"></div>
+            <div class="widget-branding">powered by <img style="height: 20px;" src="http://cdn.pointslocal.com/pointslocal-logo.svg" /></div>
           </div>
           <div id="widget-search" class="widget">
 
@@ -92,7 +94,7 @@
 </div>
           <div style="display:none;" id="widget-upcoming-template">
             {{#items}}
-              <div class="plw-item">{{#image_id}}<div class="plw-cell"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image" /></div>{{/image_id}}<div class="plw-cell"><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div></div></div>
+              <div class="plw-item plw-row">{{#image_id}}<div class="plw-cell plw-cell--3-col plw-cell--1-col-phone"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image" /></div>{{/image_id}}<div class="plw-cell plw-cell--3-col plw-cell--3-col-phone"><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div></div></div>
             {{/items}}
           </div>
           <div id="widget-upcoming" class="widget"></div>
@@ -115,7 +117,7 @@
 </div>
             <div style="display:none;" id="widget-curated-template">
               {{#items}}
-                <div class="plw-item">{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image" /></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class="plw-ribbon-container"><div class="plw-ribbon pick">EDITOR'S PICK</div></div><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div><p>{{print_description}}</p></div></div>
+                <div class="plw-item">{{#image_id}}<div class="plw-cell plw-cell--3-col plw-cell--2-col-phone"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image" /></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class="plw-ribbon-container"><div class="plw-ribbon pick">EDITOR'S PICK</div></div><a class="plw-item-title" href="http://sfgate.pointslocal.com/event/{{guid}}">{{title}}</a><div class="plw-item-meta">{{date}}, {{start_time}}</div><p>{{print_description}}</p></div></div>
               {{/items}}
             </div>
             <div id="widget-curated" class="pointslocal-widget"></div>
@@ -150,7 +152,7 @@
         site:'sfgate',
         widget: 'upcoming',
         count: 5,
-        templateSelector: '#widget-upcoming-template'
+        template: 'pointslocal.upcoming'
       });
 
       var w2 = new Pointslocal('#widget-search', {
@@ -165,6 +167,8 @@
             type: 'events',
             site:'sfgate',
             count: 4,
+            maxMobileItems: 2,
+            maxItemsCSS: 'plw-cell--hidden-phone',
             templateSelector: '#widget-search-preview-template'
           });
           $(parent.element).find('.plw-pseudo-drop-options li').on('click',function() {
