@@ -15,7 +15,7 @@
     body {
       margin-bottom: 100px;
     }
-    #header_wrap, .code, #jumbotron_wrap {
+    #header_wrap, .code, #jumbotron_wrap, .code-snippet {
       background-image: url('images/chalk.jpg');
     }
     #jumbotron_wrap, #footer_wrap {
@@ -35,8 +35,11 @@
     .code-snippet {
       font-family: monospace;
       font-size: 12px;
-      background-color: rgba(255,240,220,.7);
+      color: #fff;
       padding: 2px;
+      padding-right: 8px;
+      padding-left: 8px;
+      display: inline-block;
     }
     a {
       color: #000;
@@ -77,6 +80,7 @@
 &lt;script src="//cdn.pointslocal.com/js/pointslocal.widgets.js"&gt;&lt;/script&gt;
 &lt;link href='//cdn.pointslocal.com/css/pointslocal.widgets.css' rel='stylesheet' type='text/css'&gt;
           </pre></div>
+          <p>Each widget is constructed with a <span class='code-snippet'>new Pointstlocal()</span> call.  The first parameter is a DOM selector and the second are options passed into the widget.  In addition to standard options, any additional passed to the widget will be proxied along to the resulting API call, allowing for total flexibility of content requested.</p>
       </section>
       <section id="main_content" class="inner">
           <h1>Upcoming / Scoreboard</h1>
@@ -88,8 +92,6 @@
         type: 'games',
         site:'miami-fl',
         count: 4,
-        offset: 0,
-        clearcache: 1,
         dateFormat: 'M j',
         template: 'gameplan.scoreboard'
       });</pre>
@@ -148,14 +150,28 @@
           <p>The standings widget allows you to specify sport and class and show the records and standings.  Note this requires comprehensive coverage as it calculates standings based on games within a season.</p>
 <div class="code">
 <pre>
-      var g1 = new Pointslocal('#gameplan-standings', {
+      var g2 = new Pointslocal('#gameplan-standings', {
         type: 'standings',
         site:'miami-fl',
         count: 1,
-        offset: 0,
-        clearcache: 1,
         dateFormat: 'M j',
         template: 'gameplan.standings'
+      });</pre>
+</div>
+</section>
+
+
+      <section id="main_content" class="inner">
+          <h1>Team Cards</h1>
+          <p>Team cards show a snippet of information and a logo from a team with last result (or next upcoming). </p>
+<div class="code">
+<pre>
+      var g2 = new Pointslocal('#gameplan-team', {
+        type: 'team',
+        site:'miami-fl',
+        team: 'west-miami-high',
+        count: 1,
+        template: 'gameplan.teamcard'
       });</pre>
 </div>
 </section>
