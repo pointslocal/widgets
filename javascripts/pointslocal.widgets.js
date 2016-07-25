@@ -18,7 +18,8 @@ var PointslocalTemplates = function() {
     'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
     'pointslocal.upcoming.large': '{{#items}}<div class=plw-row><div class=plw-ribbon-container><div class=plw-ribbon>FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image"style=max-width:100%></div>{{/image_id}}<div class=plw-item-card><a class=plw-item-title>{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>{{/items}}',
 
-    'gameplan.scoreboard': 'hi!'
+    'gameplan.scoreboard.mini': '<div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-gp-header plw-cell--9-col">Scoreboard</div><div class="plw-cell plw-gp-header plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>Sport <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div><div class=plw-pseudo-drop-options><ul>{{#sports}}<li data-attribute=sport data-value={{sport_guid}}>{{sport_name}}</li>{{/sports}}</ul></div></div></div></div><div class=plw-row>{{#items}}<div class="plw-cell plw-cell--4-col"><div class=plw-row><div class="plw-cell plw-cell--8-col"><a href=#>{{away_name}}</a></div><div class="plw-cell plw-cell--4-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--8-col">@ <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--4-col">{{home_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--8-col"><span class=plw-gp-date>{{date}} @ {{time}}</span></div></div></div>{{/items}}</div><div class="plw-row plw-row--center"><div class="plw-cell plw-cell--6-col"><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-prev"><path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path></svg></div><div class="plw-cell plw-cell--6-col"><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-next"style=float:right><path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z"></path></svg></div></div>',
+      'gameplan.scoreboard.extended': '{{#sports}}<div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-cell--12-col plw-gp-header">{{sport_name}}</div></div>{{^games}}<div class=plw-row><div class="plw-cell plw-cell--12-col">No games</div></div>{{/games}} {{#games}}<div class=plw-gp-scoreboard-game><div class=plw-row><div class="plw-cell plw-cell--10-col"><a href=#>{{away_name}}</a></div><div class="plw-cell plw-cell--2-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--10-col">@ <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--2-col">{{home_score}}</div></div></div>{{/games}} {{/sports}}'
   }
 }
 
@@ -121,6 +122,20 @@ var Pointslocal = function(element,opts,cb) {
           console.log('template:',self.template);
           self.rendered = Mustache.render(self.template, d);
           $(self.element).html(self.rendered);
+          $(self.element).find('.plw-pseudo-drop-options li').on('click',function() {
+            var opAttr = $(this).attr('data-attribute');
+            var opVal = $(this).attr('data-value');
+            self.opts[opAttr] = opVal;
+            self.get();
+          });
+          $(self.element).find('.plw-control-next').on('click',function() {
+            self.opts['offset'] = self.opts['offset'] + self.opts['count'];
+            self.get();
+          });
+          $(self.element).find('.plw-control-prev').on('click',function() {
+            self.opts['offset'] = self.opts['offset'] - self.opts['count'];
+            self.get();
+          });
           $(self.element).find('.plw-pseudo-drop-inner').on('click',function() {
             var show = ($(this).hasClass('active') ? false : true);
             $('.plw-pseudo-drop-inner').removeClass('active');
