@@ -88,7 +88,7 @@
           <p>Dates and times can be formatted using the <span class='code-snippet'>dateFormat</span> and <span class='code-snippet'>timeFormat</span> parameter</p>
 <div class="code">
 <pre>
-      var g1 = new Pointslocal('#widget-search', {
+      var g1 = new Pointslocal('#gameplan-scoreboard-mini', {
         type: 'games',
         site:'miami-fl',
         count: 4,
@@ -97,16 +97,60 @@
       });</pre>
 </div>
 
+
+<div id="gameplan-scoreboard-mini" width="100%"></div>
+
+  <div id="gameplan-scoreboard-extended-template" style="display:none">
+    {{#sports}}
+    <div class="plw-row plw-gp-scoreboard plw-search">
+        <div class="plw-cell plw-cell--12-col plw-gp-header">{{sport_name}}</div>
+
+    </div>
+
+      {{^games}}<div class="plw-row"><div class="plw-cell plw-cell--12-col">No games</div></div>{{/games}}
+        {{#games}}
+        <div class="plw-gp-scoreboard-game">
+          <div class="plw-row">
+            <div class="plw-cell plw-cell--10-col">
+              <a href="#">{{away_name}}</a>
+            </div>
+            <div class="plw-cell plw-cell--2-col">
+              {{away_score}}
+            </div>
+          </div>
+          <div class="plw-row">
+            <div class="plw-cell plw-cell--10-col">
+              @ <a href="#">{{home_name}}</a>
+            </div>
+            <div class="plw-cell plw-cell--2-col">
+              {{home_score}}
+            </div>
+          </div>
+        </div>
+        {{/games}}
+
+    {{/sports}}
+  </div>
+
 <!-- <option>{{event_category_name}}</option> -->
   <div id="gameplan-scoreboard-template" style="display:none">
-    <div class="plw-row plw-gp-scoreboard">
-        <div class="plw-cell plw-cell--8-col plw-gp-header">Scoreboard</div>
-        <div class="plw-cell plw-cell--4-col plw-gp-header">Sport</div>
-    {{#items}}<div class="plw-cell plw-cell--3-col">
+    <div class="plw-row plw-gp-scoreboard plw-search">
+        <div class="plw-cell plw-cell--9-col plw-gp-header">Scoreboard</div>
+        <div class="plw-cell plw-cell--3-col plw-gp-header">
+<div class="plw-pseudo-drop" ><div class="plw-pseudo-drop-inner" >Sport <i><svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div><div class="plw-pseudo-drop-options"><ul>
+{{#sports}}<li data-attribute="sport" data-value="{{sport_guid}}">{{sport_name}}</li>{{/sports}}
+
+</ul></div></div>
+        </div>
+    </div>
+
+    <div class="plw-row">
+
+    {{#items}}<div class="plw-cell plw-cell--4-col">
 
         <div class="plw-row">
           <div class="plw-cell plw-cell--8-col">
-            <a href="#">{{away_nickname}}</a>
+            <a href="#">{{away_name}}</a>
           </div>
           <div class="plw-cell plw-cell--4-col">
             {{away_score}}
@@ -114,7 +158,7 @@
         </div>
         <div class="plw-row">
           <div class="plw-cell plw-cell--8-col">
-            <a href="#">{{home_nickname}}</a>
+            @ <a href="#">{{home_name}}</a>
           </div>
           <div class="plw-cell plw-cell--4-col">
             {{home_score}}
@@ -127,11 +171,16 @@
         </div>
     </div>{{/items}}
     </div>
+    <div class="plw-row plw-row--center">
+      <div  class="plw-cell plw-cell--6-col"> <svg class="plw-control plw-control-prev" width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"/></svg></div>
+      <div  class="plw-cell plw-cell--6-col"> <svg class="plw-control plw-control-next" style="float: right" width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z"/></svg></div>
+    </div>
   </div>
           <div id="widget-search-preview-template" style="display:none;">
             <div class="plw-item plw-row">
+
                 {{#items}}
-                  <div class="plw-cell plw-cell--3-col plw-cell--2-col-phone {{_classname}}" style="min-height: 200px;">
+                  <div class="plw-cell plw-cell--3-col plw-cell--2-col-phone {{_classname}}">
                     <div class="plw-cell-item">
                     {{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=300&h=300&context=event.image" /></div>{{/image_id}}
                   </div>
@@ -144,6 +193,11 @@
     
       </section>
 
+
+      <section id="main_content" class="inner">
+          <h1>Scoreboard Extended</h1>
+          <div id="gameplan-scoreboard-extended" ></div>
+      </section>
 
       <section id="main_content" class="inner">
           <h1>Standings</h1>
@@ -201,14 +255,27 @@ gameplan.school
     <script>
 
 
-      var g1 = new Pointslocal('#widget-search', {
+      var g1 = new Pointslocal('#gameplan-scoreboard-mini', {
         type: 'games',
         site:'omaha',
-        count: 4,
+        count: 3,
         offset: 0,
+        date: 'upcoming',
+        sport: 'football',
         clearcache: 1,
         dateFormat: 'M j',
-        templateSelector: '#gameplan-scoreboard-template'
+        template: 'gameplan.scoreboard.mini'
+      });
+
+      var g2 = new Pointslocal('#gameplan-scoreboard-extended', {
+        type: 'games',
+        site:'omaha',
+        count: 100,
+        offset: 0,
+        sport: '',
+        clearcache: 1,
+        dateFormat: 'M j',
+        template: 'gameplan.scoreboard.extended'
       });
 
     </script>
