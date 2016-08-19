@@ -3,10 +3,9 @@ Slate Theme for GitHub Pages
 by Jason Costello, @jsncostello
 *******************************************************************************/
 
-@import url(github-light.css);
+
 body {
-  padding: 0px;
-  margin: 0px;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -20,7 +19,7 @@ ol, ul {
 }
 
 body {
-  font-family: 'Lato';
+
 
 }
 
