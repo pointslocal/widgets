@@ -19,20 +19,28 @@ var PointslocalTemplates = function() {
     'pointslocal.upcoming.large': '{{#items}}<div class=plw-row><div class=plw-ribbon-container><div class=plw-ribbon>FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image"style=max-width:100%></div>{{/image_id}}<div class=plw-item-card><a class=plw-item-title>{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>{{/items}}',
 
     'gameplan.scoreboard.mini': '<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-gp-header plw-cell--9-col">Scoreboard</div><div class="plw-cell plw-gp-header plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>Sport <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div><div class=plw-pseudo-drop-options><ul>{{#sports}}<li data-attribute=sport data-value={{sport_guid}}>{{sport_name}}</li>{{/sports}}</ul></div></div><div class=plw-pseudo-drop><div class="plw-pseudo-drop-inner plw-pseudo-drop-datepicker-init">Date <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div><div class=plw-pseudo-drop-options style=width:400%;left:-300%><div data-attribute=sport data-value=""><div class=datepicker></div></div></div></div></div></div><div class=plw-row>{{^items}}<div class="plw-cell plw-cell--12-col">No Games Matched This Request</div>{{/items}}{{#items}}<div class="plw-cell plw-cell--4-col"><div class=plw-row><div class="plw-cell plw-cell--8-col">{{#away:has:image}}<img src="http://omaha.pointslocal.com/image?method=image.icrop&context=stats.image&id={{event_away_stats_entity_id}}&w=20&h=20"style=vertical-align:bottom>{{/away:has:image}}<a href=#>{{away_name}}</a> @</div><div class="plw-cell plw-cell--4-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--8-col">{{#home:has:image}}<img src="http://omaha.pointslocal.com/image?method=image.icrop&context=stats.image&id={{event_home_stats_entity_id}}&w=20&h=20"style=vertical-align:bottom>{{/home:has:image}} <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--4-col">{{home_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--8-col"><span class=plw-gp-date>{{date}} @ {{time}}</span></div></div></div>{{/items}}</div><div class="plw-row plw-row--center"><div class="plw-cell plw-cell--6-col"><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-prev"><path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path></svg></div><div class="plw-cell plw-cell--6-col plw-navigate-next"><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-next"style=float:right><path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z"></path></svg></div></div>',
-    'gameplan.scoreboard.extended': '{{#sports}}<div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-cell--12-col plw-gp-header">{{sport_name}}</div></div>{{^games}}<div class=plw-row><div class="plw-cell plw-cell--12-col">No games</div></div>{{/games}} {{#games}}<div class=plw-gp-scoreboard-game><div class=plw-row><div class="plw-cell plw-cell--10-col"><a href=#>{{away_name}}</a></div><div class="plw-cell plw-cell--2-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--10-col">@ <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--2-col">{{home_score}}</div></div></div>{{/games}} {{/sports}}'
+    'gameplan.scoreboard.extended': '{{#sports}}<div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-cell--12-col plw-gp-header">{{sport_name}}</div></div>{{^games}}<div class=plw-row><div class="plw-cell plw-cell--12-col">No games</div></div>{{/games}} {{#games}}<div class=plw-gp-scoreboard-game><div class=plw-row><div class="plw-cell plw-cell--10-col"><a href=#>{{away_name}}</a></div><div class="plw-cell plw-cell--2-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--10-col">@ <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--2-col">{{home_score}}</div></div></div>{{/games}} {{/sports}}',
+    'gameplan.team': '<div class="plw-gp plw-gp-team-card">{{#items}}<div class=plw-row><div class=plw-cell--4-col><img src="{{site}}/image?method=image.icrop&context=stats.image&id={{id}}&w=200&h=200"></div><div class=plw-cell--8-col><h2 class=plw-gp-team-header>{{name}}</h2><div class=plw-gp-team-card-team-page><a href="">Visit Team Page</a></div>{{#last_game}}<div class=plw-gp-team-card-game><b>Last Game:</b> {{title}}</div>{{/last_game}} {{#next_game}}<div class=plw-gp-team-card-game><b>Next Game:</b> {{title}}, {{date}} @ {{time}}</div>{{/next_game}}</div></div>{{/items}}</div>'
   }
 }
 
 var PointslocalIcons = function() {
+  this.fill = '#ffffff';
   this.chevron = function() {
     return '<svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"/></svg>';
   }
   this.microphone = function() {
     return '<svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1472 704v128q0 221-147.5 384.5t-364.5 187.5v132h256q26 0 45 19t19 45-19 45-45 19h-640q-26 0-45-19t-19-45 19-45 45-19h256v-132q-217-24-364.5-187.5t-147.5-384.5v-128q0-26 19-45t45-19 45 19 19 45v128q0 185 131.5 316.5t316.5 131.5 316.5-131.5 131.5-316.5v-128q0-26 19-45t45-19 45 19 19 45zm-256-384v512q0 132-94 226t-226 94-226-94-94-226v-512q0-132 94-226t226-94 226 94 94 226z"/></svg>';
   }
+  this.search = function() {
+    return '<svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path style="fill:'+this.fill+'" d="M1216 832q0-185-131.5-316.5t-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5 316.5-131.5 131.5-316.5zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124-143 0-273.5-55.5t-225-150-150-225-55.5-273.5 55.5-273.5 150-225 225-150 273.5-55.5 273.5 55.5 225 150 150 225 55.5 273.5q0 220-124 399l343 343q37 37 37 90z"/></svg>';
+  }
 }
 
 var Pointslocal = function(element,opts,cb) {
+  this.activeSites = {
+    'sfgate': { 'domain': 'http://events.sfgate.com' }
+  };
   this.site = '';
   this.type = '';
   this.element = '';
@@ -44,13 +52,31 @@ var Pointslocal = function(element,opts,cb) {
   this.templateSet;
   this.maxMobileItems;
   this.maxItemsCSS = '';
+  this.endpoint = '';
   this.APIParams = ['count','id','guid','recurring','venue','date','range','start','end','image'];
   self = this;
 
-  this.construct = function(opts) { console.log(opts);
+  this.resolveDomain = function() {
+    var site = '';
+    var dom = document.domain;
+    switch(dom) {
+      case 'sfgate.com':
+        site = 'sfgate'
+        break;
+      default:
+        site = '';
+        break;
+    }
+    return site;
+  }
+
+  this.construct = function(opts) { console.log(opts); console.log('!!!!!!!!!'+document.domain);
     this.templateSet = new PointslocalTemplates;
     if (opts.template) {
       this.template = this.templateSet.templates[opts.template];
+    }
+    if (!opts.site) {
+      opts.site = self.resolveDomain();
     }
     for (k in opts) {
       if (k === 'template') {
@@ -79,6 +105,46 @@ var Pointslocal = function(element,opts,cb) {
     this.template = $(self.templateSelector).html();
   }
 
+  this.constructRequest = function(site,type,options) {
+    return 'http://'+site+'.pointslocal.com/api/v1/'+type+'?'+options.join('&')+'&callback=?';
+  };
+
+  this.render = function(d) {
+    self.rendered = Mustache.render(self.template, d);
+    $(self.element).html(self.rendered);
+    $(self.element).find('.plw-pseudo-drop-options li').on('click',function() {
+      var opAttr = $(this).attr('data-attribute');
+      var opVal = $(this).attr('data-value');
+      self.opts[opAttr] = opVal;
+      self.get();
+    });
+    $(self.element).find('.plw-control-next').on('click',function() {
+      self.opts['offset'] = self.opts['offset'] + self.opts['count'];
+      self.get();
+    });
+    $(self.element).find('.plw-control-prev').on('click',function() {
+      self.opts['offset'] = self.opts['offset'] - self.opts['count'];
+      self.get();
+    });
+    $(self.element).find('.plw-pseudo-drop-inner').on('click',function() {
+      var show = ($(this).hasClass('active') ? false : true);
+      $('.plw-pseudo-drop-inner').removeClass('active');
+      if (show) { $(this).addClass('active'); }
+    });
+    $(self.element).find('.plw-pseudo-drop-datepicker-init').on('click',function() {
+
+      $('.datepicker').datepicker({
+          autoClose: true, 
+          onSelect: function(ev) { $('.active').removeClass('active'); self.opts['date'] = ev; self.get(); } 
+      })
+
+    });
+
+    if (self.cb) {
+      setTimeout(self.cb(self), 1);
+    }
+  }
+
   this.get = function() {
     var c = [];
     for (k in this.opts) {
@@ -90,14 +156,17 @@ var Pointslocal = function(element,opts,cb) {
     if (!self.type || self.type === '') {
       self.type = 'events';
     }
-    var call = 'http://'+this.site+'.pointslocal.com/api/v1/'+self.type+'?'+c.join('&')+'&callback=?';
-    console.log(call);
-    console.log(this.type);
+
+    var call = self.constructRequest(this.site,this.type,c);
+
+
+
     $.getJSON(call, (function(self) {
       // console.log(self.template);
         return function (d) {
           d['icon:chevron'] = self.iconSet.chevron();
           d['icon:microphone'] = self.iconSet.microphone();
+          d['icon:search'] = self.iconSet.search();
           if (self.chunk && self.chunk.length > 0) {
             for (k in self.chunk) {
               // check!
@@ -123,40 +192,27 @@ var Pointslocal = function(element,opts,cb) {
               i++;
             }
           }
-          console.log('template:',self.template);
-          self.rendered = Mustache.render(self.template, d);
-          $(self.element).html(self.rendered);
-          $(self.element).find('.plw-pseudo-drop-options li').on('click',function() {
-            var opAttr = $(this).attr('data-attribute');
-            var opVal = $(this).attr('data-value');
-            self.opts[opAttr] = opVal;
-            self.get();
-          });
-          $(self.element).find('.plw-control-next').on('click',function() {
-            self.opts['offset'] = self.opts['offset'] + self.opts['count'];
-            self.get();
-          });
-          $(self.element).find('.plw-control-prev').on('click',function() {
-            self.opts['offset'] = self.opts['offset'] - self.opts['count'];
-            self.get();
-          });
-          $(self.element).find('.plw-pseudo-drop-inner').on('click',function() {
-            var show = ($(this).hasClass('active') ? false : true);
-            $('.plw-pseudo-drop-inner').removeClass('active');
-            if (show) { $(this).addClass('active'); }
-          });
-          $(self.element).find('.plw-pseudo-drop-datepicker-init').on('click',function() {
 
-            $('.datepicker').datepicker({
-                autoClose: true, 
-                onSelect: function(ev) { $('.active').removeClass('active'); self.opts['date'] = ev; self.get(); } 
+          if (self.companion) {
+            var compOptions = [];
+            for (k in self.companion.options) {
+              compOptions.push(k+'='+self.companion.options[k]);
+            }
+            var compCall = self.constructRequest(self.site,self.companion.widget,compOptions);
+            $.getJSON(compCall, function(cd) {
+              for(ck in cd.items) {
+                cd.items[ck]['site'] = 'http://'+self.site+'.pointslocal.com';
+              }
+              d[self.companion.key] = cd.items;
+              self.render(d);
+              console.log(d);
             })
-
-          });
-
-          if (self.cb) {
-            setTimeout(self.cb(self), 1);
+            
+          } else {
+            self.render(d);
           }
+
+          
         };
     })(this));
 
