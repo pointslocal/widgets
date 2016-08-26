@@ -10,12 +10,27 @@ function arrChunk(org,size) {
   return chunks;
 }
 
+var PointslocalEventsSearch = function(opts) {
+  var cURL = opts.url + '?search=' + opts.text;
+  document.location.href = cURL;
+}
+
+var PointslocalListeners = function(e,k) {
+  if (k == 'search') {
+    $(e).find('.plw-events-search-button').on('click',function() {
+      var textEl = $(e).find('.plw-events-search-text').val();
+      var textURL = $(e).find('.plw-events-search-text').attr('data-url');
+      PointslocalEventsSearch({ url:textURL, text:textEl });
+    });
+  }
+}
+
 var PointslocalTemplates = function() {
   this.templates = {
     'pointslocal.search': '<div class="plw-item plw-search"><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>What <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li data-attribute=category_id data-value={{event_category_id}}>{{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>Where <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li><input type=checkbox> {{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>When <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li><input type=checkbox> {{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><input class=plw-textbox placeholder="Search, eg "> <i>{{{icon:microphone}}}</i></div><div class=plw-cell><a class=plw-button>Search</a></div></div><div class=widget-search-preview></div>',
-    'pointslocal.search.mini': '<div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class=plw-textbox placeholder="Search events, eg "></div><div class="plw-cell plw-cell--3-col"><a class=plw-button>{{{icon:search}}}</a></div></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--4-col">{{#image_id}}<img src="{{site}}/image?method=image.icrop&context=event.yield&w=400&h=266&id={{parent_id}}&trim=1">{{/image_id}}</div><div class="plw-cell plw-cell--8-col"><a href={{site}}/event/{{guid}}>{{title}}</a><div class=plw-metadata>{{date}}, {{start_time}}</div></div></div>{{/events}} {{branding}}',
+    'pointslocal.search.mini': '<div class="{{container_class}}"><h3 class="plw-header">{{title}}</h3><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text"     data-url="http://events.sfgate.com/events"  placeholder="Search events, eg "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=450&h=350&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}">{{/image_id}}</div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, {{start_time}}</div></div></div>{{/events}} {{branding}}</div>',
     'pointslocal.search.results':'<div class=plw-item>{{#items}}<div class=plw-cell style=min-height:200px><div class=plw-cell-item>{{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}</div><div class="plw-item-card plw-item-card-mini"><a class=plw-item-title>{{title}}</a><div>{{date}}, {{start_time}}</div></div></div>{{/items}}</div>',
-    'pointslocal.upcoming': '{{#items}}<div class=plw-item>{{#image_id}}<div class=plw-cell><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image"></div>{{/image_id}}<div class=plw-cell><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/items}}',
+    'pointslocal.upcoming': '{{#items}}{{#title}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--4-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image"></div>{{/image_id}}<div class="plw-cell plw-cell--8-col"><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/title}}{{/items}}',
     'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
     'pointslocal.upcoming.large': '{{#items}}<div class=plw-row><div class=plw-ribbon-container><div class=plw-ribbon>FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image"style=max-width:100%></div>{{/image_id}}<div class=plw-item-card><a class=plw-item-title>{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>{{/items}}',
 
@@ -40,8 +55,9 @@ var PointslocalIcons = function() {
 
 var Pointslocal = function(element,opts,cb) {
   this.activeSites = {
-    'sfgate': { 'domain': 'http://events.sfgate.com' }
+    'sfgate': { 'domain': 'http://imagecdn.pointslocal.com' }
   };
+  this.jQ;
   this.site = '';
   this.type = '';
   this.element = '';
@@ -49,6 +65,7 @@ var Pointslocal = function(element,opts,cb) {
   this.rendered = '';
   this.templateSelector = false;
   this.opts = [];
+  this.vars;
   this.template;
   this.templateSet;
   this.maxMobileItems;
@@ -57,28 +74,60 @@ var Pointslocal = function(element,opts,cb) {
   this.APIParams = ['count','id','guid','recurring','venue','date','range','start','end','image'];
   self = this;
 
-  this.resolveDomain = function() {
-    var site = '';
-    var dom = document.domain;
-    switch(dom) {
-      case 'sfgate.com':
-        site = 'sfgate'
+  this.resolveProdURL = function(c) {
+    url = '';
+    switch(c) {
+      case 'sfgate':
+        url = 'events.sfgate.com';
         break;
       default:
         site = '';
         break;
     }
-    return site;
+    return url;
+  };
+
+  this.resolveDomain = function() {
+    var site = '';
+    var url = '';
+    var dom = document.domain;
+    switch(dom) {
+      case 'sfgate.com':
+        site = 'sfgate';
+        url = 'imagecdn.pointslocal.com';
+        break;
+      default:
+        site = '';
+        break;
+    }
+    return { site: site, url: url };
   }
 
-  this.construct = function(opts) { console.log(opts); console.log('!!!!!!!!!'+document.domain);
+  this.construct = function(opts) {
+    this.jQ = $;
     this.templateSet = new PointslocalTemplates;
     if (opts.template) {
       this.template = this.templateSet.templates[opts.template];
     }
-    if (!opts.site) {
-      opts.site = self.resolveDomain();
+
+    if (opts.vars) {
+      this.vars = opts.vars;
     }
+
+    if (opts.stylesheet) {
+      var link = document.createElement("link");
+      link.href = 'http://cdn.pointslocal.com/pointslocal.'+opts.stylesheet+'.css';
+      link.type = "text/css";
+      link.rel = "stylesheet";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+
+    if (!opts.site) {
+      opts.site = self.resolveDomain().site;
+    }
+    opts.url = self.resolveProdURL(opts.site);
+
+
     for (k in opts) {
       if (k === 'template') {
         continue;
@@ -107,11 +156,12 @@ var Pointslocal = function(element,opts,cb) {
   }
 
   this.constructRequest = function(site,type,options) {
-    return 'http://'+site+'.pointslocal.com/api/v1/'+type+'?'+options.join('&')+'&callback=?';
+    return 'http://cloudy.pointslocal.com/cloudy/'+site+'/api/v1/'+type+'/'+options+'';
   };
 
-  this.render = function(d) {
+  this.render = function(self,d) {
     self.rendered = Mustache.render(self.template, d);
+
     $(self.element).html(self.rendered);
     $(self.element).find('.plw-pseudo-drop-options li').on('click',function() {
       var opAttr = $(this).attr('data-attribute');
@@ -132,6 +182,7 @@ var Pointslocal = function(element,opts,cb) {
       $('.plw-pseudo-drop-inner').removeClass('active');
       if (show) { $(this).addClass('active'); }
     });
+    PointslocalListeners(self.element,self.type);
     $(self.element).find('.plw-pseudo-drop-datepicker-init').on('click',function() {
 
       $('.datepicker').datepicker({
@@ -158,16 +209,23 @@ var Pointslocal = function(element,opts,cb) {
       self.type = 'events';
     }
 
+    this.opts['callback'] = 'bar';
+
+    c = btoa( JSON.stringify(this.opts) );
     var call = self.constructRequest(this.site,this.type,c);
-
-
 
     $.getJSON(call, (function(self) {
       // console.log(self.template);
         return function (d) {
+          for (dk in self.vars) {
+            console.log(dk);
+            console.log("!");
+            d[dk] = self.vars[dk];
+          }
           d['icon:chevron'] = self.iconSet.chevron();
           d['icon:microphone'] = self.iconSet.microphone();
           d['icon:search'] = self.iconSet.search();
+          d['url'] = self.url;
           if (self.chunk && self.chunk.length > 0) {
             for (k in self.chunk) {
               // check!
@@ -185,6 +243,8 @@ var Pointslocal = function(element,opts,cb) {
             var i = 1;
             for(k in d.items) {
               d.items[k]['site'] = 'http://'+self.site+'.pointslocal.com';
+              d.items[k]['sitecode'] = self.site;
+              d.items[k]['url'] = self.url;
               d.items[k]['_classname'] = '';
 
               if (i > self.maxMobileItems) {
@@ -199,18 +259,24 @@ var Pointslocal = function(element,opts,cb) {
             for (k in self.companion.options) {
               compOptions.push(k+'='+self.companion.options[k]);
             }
+            compOptions = btoa(JSON.stringify(self.companion.options));
             var compCall = self.constructRequest(self.site,self.companion.widget,compOptions);
+
             $.getJSON(compCall, function(cd) {
+
               for(ck in cd.items) {
                 cd.items[ck]['site'] = 'http://'+self.site+'.pointslocal.com';
+                cd.items[ck]['sitecode'] = self.site;
+                cd.items[ck]['url'] = self.url;
               }
               d[self.companion.key] = cd.items;
-              self.render(d);
-              console.log(d);
-            })
+              self.render(self,d);
+
+            })(self)
             
           } else {
-            self.render(d);
+
+            self.render(self,d);
           }
 
           
