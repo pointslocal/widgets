@@ -28,7 +28,7 @@ var PointslocalListeners = function(e,k) {
 var PointslocalTemplates = function() {
   this.templates = {
     'pointslocal.search': '<div class="plw-item plw-search"><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>What <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li data-attribute=category_id data-value={{event_category_id}}>{{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>Where <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li><input type=checkbox> {{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>When <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li><input type=checkbox> {{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><input class=plw-textbox placeholder="Search, eg "> <i>{{{icon:microphone}}}</i></div><div class=plw-cell><a class=plw-button>Search</a></div></div><div class=widget-search-preview></div>',
-    'pointslocal.search.mini': '<div class="{{container_class}} pointslocal-search-mini-{{sitecode}}"><h3 class="plw-header">{{title}}</h3><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text" data-url="http://{{endpoint}}/events"  placeholder="Search events "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=250&h=150&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}">{{/image_id}}</div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, {{start_time}}</div></div></div>{{/events}} <div style="padding: 4px;font-size: 12px;padding-right:16px;padding-bottom:16px;text-align:right;">{{&branding}}</a></div>',
+    'pointslocal.search.mini': '<div class="{{container_class}} pointslocal-search-mini-{{sitecode}}"><h3 class="plw-header">{{title}}</h3><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text" data-url="http://{{endpoint}}/events"  placeholder="Search events "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=250&h=150&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}">{{/image_id}}</div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, <span class="plw-metadata-time">{{start_time}}</span></div></div></div>{{/events}} <div style="padding: 4px;font-size: 12px;padding-right:16px;padding-bottom:16px;text-align:right;">{{&branding}}</a></div>',
     'pointslocal.search.results':'<div class=plw-item>{{#items}}<div class=plw-cell style=min-height:200px><div class=plw-cell-item>{{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}</div><div class="plw-item-card plw-item-card-mini"><a class=plw-item-title>{{title}}</a><div>{{date}}, {{start_time}}</div></div></div>{{/items}}</div>',
     'pointslocal.upcoming': '{{#items}}{{#title}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--4-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image"></div>{{/image_id}}<div class="plw-cell plw-cell--8-col"><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/title}}{{/items}}',
     'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
@@ -66,6 +66,7 @@ var Pointslocal = function(element,opts,cb) {
   this.template = '';
   this.rendered = '';
   this.templateSelector = false;
+  this.truncateTitleCharacters = false;
   this.opts = [];
   this.vars;
   this.template;
@@ -297,7 +298,7 @@ var Pointslocal = function(element,opts,cb) {
     }
 
     for (k in this.opts) {
-      if (k == 'templateSelector' || k === 'template' || k === 'chunk') {
+      if (k == 'templateSelector' || k === 'template' || k === 'chunk' || k == 'truncateTitleCharacters') {
         continue;
       }
       c.push(k+"="+this.opts[k]);
@@ -374,6 +375,10 @@ var Pointslocal = function(element,opts,cb) {
                 cd.items[ck]['sitecode'] = self.site;
                 cd.items[ck]['url'] = self.url;
                 cd.items[ck]['endpoint'] = self.endpoint;
+
+                if (self.truncateTitleCharacters && self.truncateTitleCharacters > 0) {
+                  cd.items[ck]['title'] = cd.items[ck]['title'].substring(0,self.truncateTitleCharacters);
+                }
               }
               d[self.companion.key] = cd.items;
               self.render(self,d);
