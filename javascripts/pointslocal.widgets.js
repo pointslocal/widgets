@@ -27,12 +27,12 @@ var PointslocalListeners = function(e,k) {
 
 var PointslocalTemplates = function() {
   this.templates = {
-    'pointslocal.search': '<div class="plw-item plw-search"><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>What <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li data-attribute=category_id data-value={{event_category_id}}>{{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>Where <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li><input type=checkbox> {{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>When <i>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li><input type=checkbox> {{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class=plw-cell><input class=plw-textbox placeholder="Search, eg "> <i>{{{icon:microphone}}}</i></div><div class=plw-cell><a class=plw-button>Search</a></div></div><div class=widget-search-preview></div>',
-    'pointslocal.search.mini': '<div class="{{container_class}} pointslocal-search-mini-{{sitecode}}"><h3 class="plw-header">{{title}}</h3><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text" data-url="http://{{endpoint}}/events"  placeholder="Search events "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=250&h=150&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}">{{/image_id}}</div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, <span class="plw-metadata-time">{{start_time}}</span></div></div></div>{{/events}} <div style="padding: 4px;font-size: 12px;padding-right:16px;padding-bottom:16px;text-align:right;">{{&branding}}</a></div>',
-    'pointslocal.search.results':'<div class=plw-item>{{#items}}<div class=plw-cell style=min-height:200px><div class=plw-cell-item>{{#image_id}}<div><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}</div><div class="plw-item-card plw-item-card-mini"><a class=plw-item-title>{{title}}</a><div>{{date}}, {{start_time}}</div></div></div>{{/items}}</div>',
-    'pointslocal.upcoming': '{{#items}}{{#title}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--4-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=100&h=100&context=event.image"></div>{{/image_id}}<div class="plw-cell plw-cell--8-col"><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/title}}{{/items}}',
-    'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=200&h=200&context=event.image"></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://sfgate.pointslocal.com/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
-    'pointslocal.upcoming.large': '{{#items}}<div class=plw-row><div class=plw-ribbon-container><div class=plw-ribbon>FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="http://sfgate.pointslocal.com/image?method=image.icrop&id={{image_id}}&w=400&h=400&context=event.image"style=max-width:100%></div>{{/image_id}}<div class=plw-item-card><a class=plw-item-title>{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>{{/items}}',
+    'pointslocal.search': '<div class="plw-item plw-search"><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-what><span>What</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li data-attribute=category_id data-label={{event_category_name}} data-label-target=what data-search-options=categories data-value={{event_category_id}}>{{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-where><span>Where</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#neighborhoods}}<li data-attribute=neighborhood_id data-label={{neighborhood_name}} data-label-target=where data-search-options=neighborhoods data-value={{neighborhood_id}}>{{neighborhood_name}}</li>{{/neighborhoods}}</ul></div></div></div><div class="plw-cell plw-cell--2-col-tablet plw-cell--3-col plw-cell--hide-phone"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-when><span>When</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#dates}}<li data-attribute=date data-label={{date_name}} data-label-target=when data-search-options=range data-value={{date_value}}>{{date_name}}</li>{{/dates}}</ul></div></div></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--2-col"><input class=plw-textbox id=plw-search-text placeholder=Search></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--1-col plw-cell--1-col-phone"><a class=plw-button id=plw-search-init><i class="plw-icon search"></i></a></div></div><div class="widget-search-preview"><div class=plw-grid>{{#events}}<div class="plw-cell plw-cell--4-col-phone plw-cell--3-col plw-cell--4-col-tablet">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=350&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}" style="max-width:100%"">{{/image_id}}<div><a href="http://{{url}}/event/{{guid}}">{{title}}</a></div></div>{{/events}}</div></div>',
+    'pointslocal.search.mini': '<div class="{{container_class}} pointslocal-search-mini-{{sitecode}}"><h3 class="plw-header">{{title}}</h3><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text" data-url="http://{{endpoint}}/events"  placeholder="Search events "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div><div class="pointslocal-add-event"><a href="https://{{ugc_url}}/new-create">Add Event</a></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=250&h=-1&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}">{{/image_id}}</div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, <span class="plw-metadata-time">{{start_time}}</span></div></div></div>{{/events}} <div style="padding: 4px;font-size: 12px;padding-right:16px;padding-bottom:16px;text-align:right;">{{&branding}}</a></div>',
+    'pointslocal.search.results':'<div class=plw-item>{{#items}}<div class=plw-cell style=min-height:200px><div class=plw-cell-item>{{#image_id}}<div><img src="<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=200&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%>"></div>{{/image_id}}</div><div class="plw-item-card plw-item-card-mini"><a class=plw-item-title> href="http://{{url}}/event/{{guid}}"{{title}}</a><div>{{date}}, {{start_time}}</div></div></div>{{/items}}</div>',
+    'pointslocal.upcoming': '{{#items}}{{#title}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--4-col"><img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=100&h=100&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%></div>{{/image_id}}<div class="plw-cell plw-cell--8-col"><a class=plw-item-title href="http://{{url}}/event/{{guid}}">{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/title}}{{/items}}',
+    'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=200&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://{{url}}/event/{{guid}}/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
+    'pointslocal.upcoming.large': '{{#items}}<div class=plw-row><div class=plw-ribbon-container><div class=plw-ribbon>FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=400&h=400&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%></div>{{/image_id}}<div class=plw-item-card><a class=plw-item-title href="http://{{url}}/event/{{guid}}">{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>{{/items}}',
 
     'gameplan.scoreboard.mini': '<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-gp-header plw-cell--9-col">Scoreboard</div><div class="plw-cell plw-gp-header plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>Sport <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div><div class=plw-pseudo-drop-options><ul>{{#sports}}<li data-attribute=sport data-value={{sport_guid}}>{{sport_name}}</li>{{/sports}}</ul></div></div><div class=plw-pseudo-drop><div class="plw-pseudo-drop-inner plw-pseudo-drop-datepicker-init">Date <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div><div class=plw-pseudo-drop-options style=width:400%;left:-300%><div data-attribute=sport data-value=""><div class=datepicker></div></div></div></div></div></div><div class=plw-row>{{^items}}<div class="plw-cell plw-cell--12-col">No Games Matched This Request</div>{{/items}}{{#items}}<div class="plw-cell plw-cell--4-col"><div class=plw-row><div class="plw-cell plw-cell--8-col">{{#away:has:image}}<img src="http://omaha.pointslocal.com/image?method=image.icrop&context=stats.image&id={{event_away_stats_entity_id}}&w=20&h=20"style=vertical-align:bottom>{{/away:has:image}}<a href=#>{{away_name}}</a> @</div><div class="plw-cell plw-cell--4-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--8-col">{{#home:has:image}}<img src="http://omaha.pointslocal.com/image?method=image.icrop&context=stats.image&id={{event_home_stats_entity_id}}&w=20&h=20"style=vertical-align:bottom>{{/home:has:image}} <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--4-col">{{home_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--8-col"><span class=plw-gp-date>{{date}} @ {{time}}</span></div></div></div>{{/items}}</div><div class="plw-row plw-row--center"><div class="plw-cell plw-cell--6-col"><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-prev"><path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path></svg></div><div class="plw-cell plw-cell--6-col plw-navigate-next"><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-next"style=float:right><path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z"></path></svg></div></div>',
     'gameplan.scoreboard.extended': '{{#sports}}<div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-cell--12-col plw-gp-header">{{sport_name}}</div></div>{{^games}}<div class=plw-row><div class="plw-cell plw-cell--12-col">No games</div></div>{{/games}} {{#games}}<div class=plw-gp-scoreboard-game><div class=plw-row><div class="plw-cell plw-cell--10-col"><a href=#>{{away_name}}</a></div><div class="plw-cell plw-cell--2-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--10-col">@ <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--2-col">{{home_score}}</div></div></div>{{/games}} {{/sports}}',
@@ -74,6 +74,7 @@ var Pointslocal = function(element,opts,cb) {
   this.maxMobileItems;
   this.maxItemsCSS = '';
   this.endpoint = '';
+  this.searchRequest = {'categories':'','neighborhoods':'','range':'','search':''};
   this.APIParams = ['count','id','guid','recurring','venue','date','range','start','end','image'];
   self = this;
 
@@ -84,10 +85,10 @@ var Pointslocal = function(element,opts,cb) {
         url = 'events.sfgate.com';
         break;   
       case 'icflorida':
-        url = 'beta.icflorida.com';
+        url = 'events.icflorida.com';
         break;         
       case 'gocarolinas':
-        url = 'beta.gocarolinas.com';
+        url = 'events.gocarolinas.com';
         break;
       case 'lakana-uat':
         url = 'beta.gocarolinas.com';
@@ -110,69 +111,96 @@ var Pointslocal = function(element,opts,cb) {
     if (dpart.length > 2) {
       dom = dpart.slice(1).join('.');
       console.log('new:'+dom);
+    } else {
+      console.log(dom);
     }
     switch(dom) {
       case 'sfgate.com':
         site = 'sfgate';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'sfgate-secure.pointslocal.com';
         break;
       case 'seattlepi.com':
         site = 'seattlepi';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'seattle-secure.pointslocal.com';        
         break;
       case 'ctpost.com':
         site = 'ctpost';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'ct-secure.pointslocal.com';        
         break;        
       case 'chron.com':
         site = 'chron';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'chron-secure.pointslocal.com';        
         break;
+      case 'yourhoustonnews.com':
+        site='chron';
+        url = 'imagecdn.pointslocal.com';
+        ugc = 'chron-secure.pointslocal.com';        
+        break;
+      case 'yourconroenews.com':
+        site = 'chron';
+        url = 'imagecdn.pointslocal.com';
+        ugc = 'chron-secure.pointslocal.com';        
+        break;        
       case 'beaumontenterprise.com':
         site = 'beaumontenterprise';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'beaumont-secure.pointslocal.com';        
         break;
       case 'timesunion.com':
         site = 'timesunion';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'albany-secure.pointslocal.com';        
         break;
       case 'newstimes.com':
         site = 'newstimes';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'ct-secure.pointslocal.com';        
         break;
       case 'greenwichtime.com':
         site = 'greenwichtime';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'ct-secure.pointslocal.com';        
         break;
       case 'stamfordadvocate.com':
         site = 'stamfordadvocate';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'ct-secure.pointslocal.com';        
         break;
       case 'mysanantonio.com':
         site = 'mysanantonio';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'mysanantonio-secure.pointslocal.com';        
         break; 
       case 'icflorida.com':
         site = 'icflorida';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'icflorida-secure.pointslocal.com';
         break;
       case 'gocarolinas.com':
         site = 'gocarolinas';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'gocarolinas-secure.pointslocal.com';        
         break;      
       case 'cmg-web.lakana-sandbox.com':
         site = 'gocarolinas';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'gocarolinas-secure.pointslocal.com';        
         break; 
       case 'cmg-web.lakana-uat.com':
         site = 'gocarolinas';
         url = 'imagecdn.pointslocal.com';
+        ugc = 'gocarolinas-secure.pointslocal.com';        
         break;                                                                                                          
       default:
         site = '';
         break;
     }
-    return { site: site, url: url };
+    console.log(site,url);
+    return { site: site, url: url, ugc: ugc };
   }
 
   this.construct = function(opts) {
@@ -201,6 +229,7 @@ var Pointslocal = function(element,opts,cb) {
       opts.cdn = true;
     }
     opts.url = self.resolveProdURL(opts.site);
+    this.ugc_url = self.resolveDomain().ugc;
     this.endpoint = opts.url;
 
     for (k in opts) {
@@ -236,7 +265,7 @@ var Pointslocal = function(element,opts,cb) {
       options = btoa(JSON.stringify(options));
       req = 'http://cloudy.pointslocal.com/cloudy/'+site+'/api/v1/'+type+'/'+options+'';
     } else {
-      console.log('-> nocdn');
+      // console.log('-> nocdn');
       o = [];
       for (k in options) {
         o.push(k+'='+options[k]);
@@ -255,7 +284,23 @@ var Pointslocal = function(element,opts,cb) {
       var opAttr = $(this).attr('data-attribute');
       var opVal = $(this).attr('data-value');
       self.opts[opAttr] = opVal;
-      self.get();
+      var labelTarget = $(this).attr('data-label-target');
+      $('#plw-pseudo-drop-'+labelTarget).find('span').html($(this).attr('data-label'));
+      $(this).parent().parent().parent().find('.plw-pseudo-drop-inner').removeClass('active');  
+      var searchOp = $(this).attr('data-search-options');
+      self.searchRequest[searchOp] = $(this).attr('data-value');    
+      // self.get();
+    });
+    $(self.element).find('#plw-search-init').on('click',function() {
+      self.searchRequest.search = $(this).parent().parent().find('#plw-search-text').val();
+      var req = [];
+      var searchHost = 'http://' + self.endpoint + '/events?';
+      for (k in self.searchRequest) {
+        req.push(k+'='+self.searchRequest[k]);
+      }
+      req = req.join('&');
+      var searchEndpoint = searchHost + req;
+      document.location.href = searchEndpoint;
     });
     $(self.element).find('.plw-control-next').on('click',function() {
       self.opts['offset'] = self.opts['offset'] + self.opts['count'];
@@ -279,6 +324,7 @@ var Pointslocal = function(element,opts,cb) {
       })
 
     });
+
 
     if (self.cb) {
       setTimeout(self.cb(self), 1);
@@ -326,6 +372,7 @@ var Pointslocal = function(element,opts,cb) {
           d['url'] = self.url;
           d['endpoint'] = self.endpoint;
           d['sitecode'] = self.site;
+          d['ugc_url'] = self.ugc_url;
           d['branding'] = 'powered by <a href="http://corporate.pointslocal.com">pointslocal</a>';
           if (self.chunk && self.chunk.length > 0) {
             for (k in self.chunk) {
@@ -364,13 +411,13 @@ var Pointslocal = function(element,opts,cb) {
             for (k in self.companion.options) {
               compOptions.push(k+'='+self.companion.options[k]);
             }
-            console.log(compOptions);
             compOptions = btoa(JSON.stringify(self.companion.options));
             var compCall = self.constructRequest(self.site,self.companion.widget,self.companion.options);
 
             $.getJSON(compCall, function(cd) {
 
               for(ck in cd.items) {
+                console.log(cd.items);
                 cd.items[ck]['site'] = 'http://'+self.site+'.pointslocal.com';
                 cd.items[ck]['sitecode'] = self.site;
                 cd.items[ck]['url'] = self.url;
@@ -389,6 +436,7 @@ var Pointslocal = function(element,opts,cb) {
 
             self.render(self,d);
           }
+
 
           
         };
