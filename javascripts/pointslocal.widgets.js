@@ -107,6 +107,7 @@ var Pointslocal = function(element,opts,cb) {
     var site = '';
     var url = '';
     var dom = document.domain;
+    var ugc = '';
     var dpart = dom.split('.');
     if (dpart.length > 2) {
       dom = dpart.slice(1).join('.');
