@@ -28,7 +28,7 @@ var PointslocalListeners = function(e,k) {
 var PointslocalTemplates = function() {
   this.templates = {
     'pointslocal.search': '<div class="plw-item plw-search"><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-what><span>What</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li data-attribute=category_id data-label={{event_category_name}} data-label-target=what data-search-options=categories data-value={{event_category_id}}>{{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-where><span>Where</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#neighborhoods}}<li data-attribute=neighborhood_id data-label={{neighborhood_name}} data-label-target=where data-search-options=neighborhoods data-value={{neighborhood_id}}>{{neighborhood_name}}</li>{{/neighborhoods}}</ul></div></div></div><div class="plw-cell plw-cell--2-col-tablet plw-cell--3-col plw-cell--hide-phone"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-when><span>When</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#dates}}<li data-attribute=date data-label={{date_name}} data-label-target=when data-search-options=range data-value={{date_value}}>{{date_name}}</li>{{/dates}}</ul></div></div></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--2-col"><input class=plw-textbox id=plw-search-text placeholder=Search></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--1-col plw-cell--1-col-phone"><a class=plw-button id=plw-search-init><i class="plw-icon search"></i></a></div></div><div class="widget-search-preview"><div class=plw-grid>{{#events}}<div class="plw-cell plw-cell--4-col-phone plw-cell--3-col plw-cell--4-col-tablet">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=350&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}" style="max-width:100%"">{{/image_id}}<div><a href="http://{{url}}/event/{{guid}}">{{title}}</a></div></div>{{/events}}</div></div>',
-    'pointslocal.search.mini': '<div class="{{container_class}} pointslocal-search-mini-{{sitecode}}"><h3 class="plw-header">{{title}}</h3><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text" data-url="http://{{endpoint}}/events"  placeholder="Search events "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div><div class="pointslocal-add-event"><a href="https://{{ugc_url}}/new-create">Add Event</a></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=250&h=-1&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}">{{/image_id}}</div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, <span class="plw-metadata-time">{{start_time}}</span></div></div></div>{{/events}} <div style="padding: 4px;font-size: 12px;padding-right:16px;padding-bottom:16px;text-align:right;">{{&branding}}</a></div>',
+    'pointslocal.search.mini': '<div class="{{container_class}} pointslocal-search-mini-{{sitecode}} {{domain}}"><h3 class="plw-header">{{title}}</h3><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text" data-url="http://{{endpoint}}/events"  placeholder="Search events "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div><div class="pointslocal-add-event"><a href="https://{{ugc_url}}/new-create">Add Event</a></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=250&h=-1&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}">{{/image_id}}</div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, <span class="plw-metadata-time">{{start_time}}</span></div></div></div>{{/events}} <div style="padding: 4px;font-size: 12px;padding-right:16px;padding-bottom:16px;text-align:right;">{{&branding}}</a></div>',
     'pointslocal.search.results':'<div class=plw-item>{{#items}}<div class=plw-cell style=min-height:200px><div class=plw-cell-item>{{#image_id}}<div><img src="<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=200&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%>"></div>{{/image_id}}</div><div class="plw-item-card plw-item-card-mini"><a class=plw-item-title> href="http://{{url}}/event/{{guid}}"{{title}}</a><div>{{date}}, {{start_time}}</div></div></div>{{/items}}</div>',
     'pointslocal.upcoming': '{{#items}}{{#title}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--4-col"><img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=100&h=100&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%></div>{{/image_id}}<div class="plw-cell plw-cell--8-col"><a class=plw-item-title href="http://{{url}}/event/{{guid}}">{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/title}}{{/items}}',
     'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=200&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://{{url}}/event/{{guid}}/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
@@ -201,7 +201,7 @@ var Pointslocal = function(element,opts,cb) {
         break;
     }
     console.log(site,url);
-    return { site: site, url: url, ugc: ugc };
+    return { site: site, url: url, ugc: ugc, domain: dom };
   }
 
   this.construct = function(opts) {
@@ -216,6 +216,7 @@ var Pointslocal = function(element,opts,cb) {
     }
     opts.cloud = 1;
 
+    // imports custom stylesheet
     if (opts.stylesheet) {
       var link = document.createElement("link");
       link.href = 'http://cdn.pointslocal.com/pointslocal.'+opts.stylesheet+'.css';
@@ -232,6 +233,7 @@ var Pointslocal = function(element,opts,cb) {
     opts.url = self.resolveProdURL(opts.site);
     this.ugc_url = self.resolveDomain().ugc;
     this.endpoint = opts.url;
+    this.domain = self.resolveDomain().domain;
 
     for (k in opts) {
       if (k === 'template') {
@@ -373,6 +375,7 @@ var Pointslocal = function(element,opts,cb) {
           d['url'] = self.url;
           d['endpoint'] = self.endpoint;
           d['sitecode'] = self.site;
+          d['domain'] = self.domain;
           d['ugc_url'] = self.ugc_url;
           d['branding'] = 'powered by <a href="http://corporate.pointslocal.com">pointslocal</a>';
           if (self.chunk && self.chunk.length > 0) {
