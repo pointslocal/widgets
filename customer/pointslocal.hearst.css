@@ -41,17 +41,33 @@ font-size: 14px;
     font-size: 18px;
     font-family: "ChunkFiveRegular", serif;
     text-transform: none;
+    font-weight: normal;
     background-color: #ea4a12;
 }
 .pointslocal-search-mini-chron .plw-item-title {
     font-size: 14px;
-    font-family: 'Roboto Bold';
+    font-family: 'RobotoBold';
 }
 .pointslocal-search-mini-chron .plw-metadata {
     font-size: 12px;
-    font-family: 'Roboto Regular';
+    font-family: 'RobotoRegular';
     color: #999;
 }
+
+.pointslocal-search-mini-chron.yourconroenewscom .plw-header {
+    font-family: "RobotoSlabBold";
+}
+.pointslocal-search-mini-chron.yourconroenewscom .plw-item-title {
+    font-size: 14px;
+    font-family: 'RobotoBold';
+}
+.pointslocal-search-mini-chron.yourconroenewscom  .plw-metadata {
+    font-size: 12px;
+    font-family: 'RobotoRegular';
+    color: #999;
+}
+
+
 .pointslocal-search-mini-mysanantonio .plw-metadata {
     font-size: 12px;
     font-family: 'SanchezBold';
@@ -94,7 +110,7 @@ font-size: 14px;
 }
 .pointslocal-search-mini-ctpost .plw-metadata, .pointslocal-search-mini-greenwichtime .plw-metadata, .pointslocal-search-mini-newstimes .plw-metadata, .pointslocal-search-mini-thehour .plw-metadata, .pointslocal-search-mini-stamfordadvocate .plw-metadata {
     font-size: 12px;
-    font-family: 'Roboto Regular';
+    font-family: 'RobotoRegular';
     color: #999;
 }
 
@@ -115,6 +131,6 @@ font-size: 14px;
 }
 .pointslocal-search-mini-timesunion .plw-metadata, .pointslocal-search-mini-seattlepi .plw-metadata {
     font-size: 12px;
-    font-family: 'Roboto Regular';
+    font-family: 'RobotoRegular';
     color: #999;
 }

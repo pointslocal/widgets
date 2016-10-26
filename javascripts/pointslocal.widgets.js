@@ -233,7 +233,7 @@ var Pointslocal = function(element,opts,cb) {
     opts.url = self.resolveProdURL(opts.site);
     this.ugc_url = self.resolveDomain().ugc;
     this.endpoint = opts.url;
-    this.domain = self.resolveDomain().domain.replace(/[^a-z]+/gi/,'');
+    this.domain = self.resolveDomain().domain.replace(/[^a-z]+/gi,'');
 
     for (k in opts) {
       if (k === 'template') {
