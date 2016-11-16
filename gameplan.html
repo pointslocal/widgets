@@ -215,17 +215,34 @@
 </section>
 
 
+  <div id="teamTemplate" style="display:none;">
+  <div class="plw-gp plw-gp-team-card">
+  {{#items}}
+    <div class="plw-row">
+        <div class="plw-cell--4-col"><img src="{{site}}/image?method=image.icrop&context=stats.image&id={{id}}&w=200&h=200" /></div>
+        <div class="plw-cell--8-col"><h2 class="plw-gp-team-header">{{name}}</h2>
+            <div class="plw-gp-team-card-team-page"><a href="">Visit Team Page</a></div>
+            {{#last_game}}<div class="plw-gp-team-card-game"><b>Last Game:</b> {{title}}</div>{{/last_game}}
+            {{#next_game}}<div class="plw-gp-team-card-game"><b>Next Game:</b> {{title}}, {{date}} @ {{time}}</div>{{/next_game}}
+        </div>
+    </div>
+  {{/items}}
+  </div>
+  </div>
+
+
       <section id="main_content" class="inner">
           <h1>Team Cards</h1>
           <p>Team cards show a snippet of information and a logo from a team with last result (or next upcoming). </p>
+          <div id="gameplan-teamcards" ></div>
 <div class="code">
 <pre>
-      var g2 = new Pointslocal('#gameplan-team', {
-        type: 'team',
-        site:'miami-fl',
-        team: 'west-miami-high',
+      var teamWidget = new Pointslocal('#gameplan-teamcards', {
+        type: 'teams',
+        site:'omaha',
+        school: 'adams-central',
         count: 1,
-        template: 'gameplan.teamcard'
+        template: 'gameplan.team'
       });</pre>
 </div>
 </section>
@@ -270,12 +287,20 @@ gameplan.school
       var g2 = new Pointslocal('#gameplan-scoreboard-extended', {
         type: 'games',
         site:'omaha',
-        count: 100,
+        count: 1,
         offset: 0,
         sport: '',
         clearcache: 1,
         dateFormat: 'M j',
         template: 'gameplan.scoreboard.extended'
+      });
+
+     var teamWidget = new Pointslocal('#gameplan-teamcards', {
+        type: 'teams',
+        site:'omaha',
+        school: 'adams-central',
+        count: 1,
+        template: 'gameplan.team'
       });
 
     </script>

@@ -1,0 +1,19 @@
+.plw-button, .plw-textbox {
+	height: 29px !important;
+}
+.widget-search-preview .plw-cell {
+	min-height: 150px !important;
+}
+.plw-cell .plw-item-card {
+	bottom: 0px !important;
+}
+.plw-item-card  {
+	width: 100% !important;
+}
+.plw-item-card {
+	position: relative !important;
+
+}
+.plw-item-card .plw-item-title {
+	color: #333 !important;
+}

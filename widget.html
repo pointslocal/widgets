@@ -1,0 +1,133 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="javascripts/pointslocal.widgets.js"></script>
+<link href='stylesheets/pointslocal.widgets.css' rel='stylesheet' type='text/css'>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<style>
+
+.ui-datepicker-title {
+	text-align: center;
+}
+.ui-datepicker-calendar {
+	width: 100%;
+}
+.ui-datepicker-calendar td {
+text-align: center;
+}
+.ui-datepicker-calendar th {
+	font-size: 12px;
+	padding: 4px;
+}
+.ui-datepicker-calendar td a {
+	display: block;
+	color: #333;
+	text-decoration: none;
+	padding: 4px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border: 1px solid #eee;
+	font-size: 12px;
+}
+.ui-datepicker-calendar td a:hover {
+	background-color: #eee;
+}
+.ui-datepicker-header {
+	background-color: #ccc;
+	padding: 8px;	
+}
+.ui-datepicker-prev, .ui-datepicker-next {
+	font-size: 0px;
+}
+.ui-datepicker-prev, .ui-state-hover .ui-datepicker-prev {
+	float: left;
+	width: 16px;
+	height: 16px;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgc3R5bGU9ImZpbGw6ICNmZmZmZmYiIGhlaWdodD0iMTc5MiIgdmlld0JveD0iMCAwIDE3OTIgMTc5MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTQyNyAzMDFsLTUzMSA1MzEgNTMxIDUzMXExOSAxOSAxOSA0NXQtMTkgNDVsLTE2NiAxNjZxLTE5IDE5LTQ1IDE5dC00NS0xOWwtNzQyLTc0MnEtMTktMTktMTktNDV0MTktNDVsNzQyLTc0MnExOS0xOSA0NS0xOXQ0NSAxOWwxNjYgMTY2cTE5IDE5IDE5IDQ1dC0xOSA0NXoiLz48L3N2Zz4=) !important;
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	background-position: 50% 40%;
+}
+
+.ui-datepicker-next, .ui-state-hover .ui-datepicker-next {
+	float: right;
+	width: 16px;
+	height: 16px;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgc3R5bGU9ImZpbGw6ICNmZmZmZmYiIGhlaWdodD0iMTc5MiIgdmlld0JveD0iMCAwIDE3OTIgMTc5MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTM2MyA4NzdsLTc0MiA3NDJxLTE5IDE5LTQ1IDE5dC00NS0xOWwtMTY2LTE2NnEtMTktMTktMTktNDV0MTktNDVsNTMxLTUzMS01MzEtNTMxcS0xOS0xOS0xOS00NXQxOS00NWwxNjYtMTY2cTE5LTE5IDQ1LTE5dDQ1IDE5bDc0MiA3NDJxMTkgMTkgMTkgNDV0LTE5IDQ1eiIvPjwvc3ZnPg==) !important;
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	background-position: 50% 40%;
+}
+
+
+</style>
+</head>
+
+<body>
+
+
+<div id="template" style="display:none;">
+<div class="plw-row plw-gp-scoreboard plw-search">
+    <div class="plw-cell plw-gp-header plw-cell--9-col">Scoreboard</div>
+    <div class="plw-cell plw-gp-header plw-cell--3-col">
+        <div class=plw-pseudo-drop>
+            <div class=plw-pseudo-drop-inner>Sport <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div>
+            <div class=plw-pseudo-drop-options>
+                <ul>{{#sports}}
+                    <li data-attribute=sport data-value={{sport_guid}}>{{sport_name}}</li>{{/sports}}</ul>
+            </div>
+        </div>
+        <div class=plw-pseudo-drop>
+            <div class='plw-pseudo-drop-inner plw-pseudo-drop-datepicker-init' onclick="">Date <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div>
+            <div class=plw-pseudo-drop-options style="width:400%;left:-300%;">
+                <div data-attribute=sport data-value=""><div class="datepicker"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=plw-row>{{^items}}<div class="plw-cell plw-cell--12-col">No Games Matched This Request</div>{{/items}}{{#items}}
+    <div class="plw-cell plw-cell--4-col">
+        <div class=plw-row>
+            <div class="plw-cell plw-cell--8-col">{{#away:has:image}}<img src="http://omaha.pointslocal.com/image?method=image.icrop&context=stats.image&id={{event_away_stats_entity_id}}&w=20&h=20" style="vertical-align: bottom"/>{{/away:has:image}}<a href=#>{{away_name}}</a> @</div>
+            <div class="plw-cell plw-cell--4-col">{{away_score}}</div>
+        </div>
+        <div class=plw-row>
+            <div class="plw-cell plw-cell--8-col">{{#home:has:image}}<img src="http://omaha.pointslocal.com/image?method=image.icrop&context=stats.image&id={{event_home_stats_entity_id}}&w=20&h=20" style="vertical-align: bottom"/>{{/home:has:image}} <a href=#>{{home_name}}</a></div>
+            <div class="plw-cell plw-cell--4-col">{{home_score}}</div>
+        </div>
+        <div class=plw-row>
+            <div class="plw-cell plw-cell--8-col"><span class=plw-gp-date>{{date}} @ {{time}}</span></div>
+        </div>
+    </div>{{/items}}</div>
+<div class="plw-row plw-row--center">
+    <div class="plw-cell plw-cell--6-col">
+        <svg height=16 viewBox="0 0 1792 1792" width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-prev">
+            <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path>
+        </svg>
+    </div>
+    <div class="plw-cell plw-cell--6-col plw-navigate-next">
+        <svg height=16 viewBox="0 0 1792 1792" width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-next" style=float:right>
+            <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z"></path>
+        </svg>
+    </div>
+</div>
+</div>
+
+<div id="gameplan-scoreboard-mini">...</div>
+<script>
+      var g1 = new Pointslocal('#gameplan-scoreboard-mini', {
+        type: 'games',
+        site:'omaha',
+        count: 3,
+        offset: 0,
+        dateFormat: 'M j',
+        template: 'gameplan.scoreboard.mini'
+        //templateSelector: '#template'// 'gameplan.scoreboard.mini'
+      });
+</script>
+
+</body>
+
+</html>
