@@ -27,12 +27,12 @@ var PointslocalListeners = function(e,k) {
 
 var PointslocalTemplates = function() {
   this.templates = {
-    'pointslocal.search': '<div class="plw-item plw-search"><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-what><span>What</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li data-attribute=category_id data-label={{event_category_name}} data-label-target=what data-search-options=categories data-value={{event_category_id}}>{{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-where><span>Where</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#neighborhoods}}<li data-attribute=neighborhood_id data-label={{neighborhood_name}} data-label-target=where data-search-options=neighborhoods data-value={{neighborhood_id}}>{{neighborhood_name}}</li>{{/neighborhoods}}</ul></div></div></div><div class="plw-cell plw-cell--2-col-tablet plw-cell--3-col plw-cell--hide-phone"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-when><span>When</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#dates}}<li data-attribute=date data-label={{date_name}} data-label-target=when data-search-options=range data-value={{date_value}}>{{date_name}}</li>{{/dates}}</ul></div></div></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--2-col"><input class=plw-textbox id=plw-search-text placeholder=Search></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--1-col plw-cell--1-col-phone"><a class=plw-button id=plw-search-init><i class="plw-icon search"></i></a></div></div><div class="widget-search-preview"><div class=plw-grid>{{#events}}<div class="plw-cell plw-cell--4-col-phone plw-cell--3-col plw-cell--4-col-tablet">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=350&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}" style="max-width:100%"">{{/image_id}}<div><a href="http://{{url}}/event/{{guid}}">{{title}}</a></div></div>{{/events}}</div></div>',
-    'pointslocal.search.mini': '<div class="{{container_class}} pointslocal-search-mini-{{sitecode}} {{domain}}"><h3 class="plw-header">{{title}}</h3><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text" data-url="http://{{endpoint}}/events"  placeholder="Search events "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div><div class="pointslocal-add-event"><a href="https://{{ugc_url}}/new-create">Add Event</a></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col">{{#image_id}}<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=250&h=-1&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}">{{/image_id}}</div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, <span class="plw-metadata-time">{{start_time}}</span></div></div></div>{{/events}} <div style="padding: 4px;font-size: 12px;padding-right:16px;padding-bottom:16px;text-align:right;">{{&branding}}</a></div>',
-    'pointslocal.search.results':'<div class=plw-item>{{#items}}<div class=plw-cell style=min-height:200px><div class=plw-cell-item>{{#image_id}}<div><img src="<img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=200&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%>"></div>{{/image_id}}</div><div class="plw-item-card plw-item-card-mini"><a class=plw-item-title> href="http://{{url}}/event/{{guid}}"{{title}}</a><div>{{date}}, {{start_time}}</div></div></div>{{/items}}</div>',
-    'pointslocal.upcoming': '{{#items}}{{#title}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--4-col"><img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=100&h=100&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%></div>{{/image_id}}<div class="plw-cell plw-cell--8-col"><a class=plw-item-title href="http://{{url}}/event/{{guid}}">{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/title}}{{/items}}',
-    'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=200&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://{{url}}/event/{{guid}}/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
-    'pointslocal.upcoming.large': '{{#items}}<div class=plw-row><div class=plw-ribbon-container><div class=plw-ribbon>FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="http://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=400&h=400&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}"style=max-width:100%></div>{{/image_id}}<div class=plw-item-card><a class=plw-item-title href="http://{{url}}/event/{{guid}}">{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>{{/items}}',
+    'pointslocal.search': '<div class="plw-item plw-search"><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-what><span>What</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#categories}}<li data-attribute=category_id data-label={{event_category_name}} data-label-target=what data-search-options=categories data-value={{event_category_id}}>{{event_category_name}}</li>{{/categories}}</ul></div></div></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-where><span>Where</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#neighborhoods}}<li data-attribute=neighborhood_id data-label={{neighborhood_name}} data-label-target=where data-search-options=neighborhoods data-value={{neighborhood_id}}>{{neighborhood_name}}</li>{{/neighborhoods}}</ul></div></div></div><div class="plw-cell plw-cell--2-col-tablet plw-cell--3-col plw-cell--hide-phone"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner id=plw-pseudo-drop-when><span>When</span> <i class=plw-cell--hide-phone>{{{icon:chevron}}}</i></div><div class=plw-pseudo-drop-options><ul>{{#dates}}<li data-attribute=date data-label={{date_name}} data-label-target=when data-search-options=range data-value={{date_value}}>{{date_name}}</li>{{/dates}}</ul></div></div></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--2-col-tablet plw-cell--2-col"><input class=plw-textbox id=plw-search-text placeholder=Search></div><div class="plw-cell plw-cell--1-col-tablet plw-cell--1-col plw-cell--1-col-phone"><a class=plw-button id=plw-search-init><i class="plw-icon search"></i></a></div></div><div class="widget-search-preview"><div class=plw-grid>{{#events}}<div class="plw-cell plw-cell--4-col-phone plw-cell--3-col plw-cell--4-col-tablet">{{#image_id}}<img src="https://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=350&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}&q=50" style="max-width:100%"">{{/image_id}}<div><a href="http://{{url}}/event/{{guid}}">{{title}}</a></div></div>{{/events}}</div></div>',
+    'pointslocal.search.mini': '<div class="{{container_class}} pointslocal-search-mini-{{sitecode}} {{domain}}"><a href="http://{{produrl}}"><h3 class="plw-header">{{title}}</h3></a><div class=plw-grid><div class="plw-cell plw-cell--9-col"><input class="plw-textbox plw-events-search-text" data-url="http://{{endpoint}}/events"  placeholder="Search events "></div><div class="plw-cell plw-cell--3-col"><a class="plw-button plw-events-search-button" id="plw-events-search-button">{{{icon:search}}}</a></div></div><div class="pointslocal-add-event"><a href="https://{{ugc_url}}/new-create">Add Event</a></div>{{#events}}<div class=plw-grid><div class="plw-cell plw-cell--5-col"><img src="https://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=250&h=-1&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}&q=50"></div><div class="plw-cell plw-cell--7-col"><a class="plw-item-title" href="http://{{url}}/event/{{guid}}">{{title}}</a><div class="plw-metadata">{{date}}, <span class="plw-metadata-time">{{start_time}}</span></div></div></div>{{/events}} <div style="padding: 4px;font-size: 12px;padding-right:16px;padding-bottom:16px;text-align:right;">{{&branding}}</a></div>',
+    'pointslocal.search.results':'<div class=plw-item>{{#items}}<div class=plw-cell style=min-height:200px><div class=plw-cell-item>{{#image_id}}<div><img src="<img src="https://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=200&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}&q=50"style=max-width:100%>"></div>{{/image_id}}</div><div class="plw-item-card plw-item-card-mini"><a class=plw-item-title> href="http://{{url}}/event/{{guid}}"{{title}}</a><div>{{date}}, {{start_time}}</div></div></div>{{/items}}</div>',
+    'pointslocal.upcoming': '{{#items}}{{#title}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--4-col"><img src="https://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=100&h=100&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}&q=50"style=max-width:100%></div>{{/image_id}}<div class="plw-cell plw-cell--8-col"><a class=plw-item-title href="http://{{url}}/event/{{guid}}">{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div></div></div>{{/title}}{{/items}}',
+    'pointslocal.upcoming.medium': '{{#items}}<div class=plw-item>{{#image_id}}<div class="plw-cell plw-cell--3-col"><img src="https://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=200&h=200&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}&q=50"style=max-width:100%></div>{{/image_id}}<div class="plw-cell plw-cell--9-col"><div class=plw-ribbon-container><div class="pick plw-ribbon">EDITOR\'S PICK</div></div><a class=plw-item-title href=http://{{url}}/event/{{guid}}/event/{{guid}}>{{title}}</a><div class=plw-item-meta>{{date}}, {{start_time}}</div><p>{{print_description}}</div></div>{{/items}}',
+    'pointslocal.upcoming.large': '{{#items}}<div class=plw-row><div class=plw-ribbon-container><div class=plw-ribbon>FEATURED</div></div>{{#image_id}}<div class="plw-cell plw-cell--12-col"><img src="https://imagecdn.pointslocal.com/image?method=image.icrop&context=event.yield&w=400&h=400&id={{parent_id}}&trim=1&cf=true&site={{sitecode}}&q=50"style=max-width:100%></div>{{/image_id}}<div class=plw-item-card><a class=plw-item-title href="http://{{url}}/event/{{guid}}">{{title}}</a> @ {{venue_name}}<div>{{date}}, {{start_time}}</div></div></div>{{/items}}',
 
     'gameplan.scoreboard.mini': '<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script><div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-gp-header plw-cell--9-col">Scoreboard</div><div class="plw-cell plw-gp-header plw-cell--3-col"><div class=plw-pseudo-drop><div class=plw-pseudo-drop-inner>Sport <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div><div class=plw-pseudo-drop-options><ul>{{#sports}}<li data-attribute=sport data-value={{sport_guid}}>{{sport_name}}</li>{{/sports}}</ul></div></div><div class=plw-pseudo-drop><div class="plw-pseudo-drop-inner plw-pseudo-drop-datepicker-init">Date <i><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z"></path></svg></i></div><div class=plw-pseudo-drop-options style=width:400%;left:-300%><div data-attribute=sport data-value=""><div class=datepicker></div></div></div></div></div></div><div class=plw-row>{{^items}}<div class="plw-cell plw-cell--12-col">No Games Matched This Request</div>{{/items}}{{#items}}<div class="plw-cell plw-cell--4-col"><div class=plw-row><div class="plw-cell plw-cell--8-col">{{#away:has:image}}<img src="http://omaha.pointslocal.com/image?method=image.icrop&context=stats.image&id={{event_away_stats_entity_id}}&w=20&h=20"style=vertical-align:bottom>{{/away:has:image}}<a href=#>{{away_name}}</a> @</div><div class="plw-cell plw-cell--4-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--8-col">{{#home:has:image}}<img src="http://omaha.pointslocal.com/image?method=image.icrop&context=stats.image&id={{event_home_stats_entity_id}}&w=20&h=20"style=vertical-align:bottom>{{/home:has:image}} <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--4-col">{{home_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--8-col"><span class=plw-gp-date>{{date}} @ {{time}}</span></div></div></div>{{/items}}</div><div class="plw-row plw-row--center"><div class="plw-cell plw-cell--6-col"><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-prev"><path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path></svg></div><div class="plw-cell plw-cell--6-col plw-navigate-next"><svg height=16 viewBox="0 0 1792 1792"width=16 xmlns=http://www.w3.org/2000/svg class="plw-control plw-control-next"style=float:right><path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z"></path></svg></div></div>',
     'gameplan.scoreboard.extended': '{{#sports}}<div class="plw-row plw-gp-scoreboard plw-search"><div class="plw-cell plw-cell--12-col plw-gp-header">{{sport_name}}</div></div>{{^games}}<div class=plw-row><div class="plw-cell plw-cell--12-col">No games</div></div>{{/games}} {{#games}}<div class=plw-gp-scoreboard-game><div class=plw-row><div class="plw-cell plw-cell--10-col"><a href=#>{{away_name}}</a></div><div class="plw-cell plw-cell--2-col">{{away_score}}</div></div><div class=plw-row><div class="plw-cell plw-cell--10-col">@ <a href=#>{{home_name}}</a></div><div class="plw-cell plw-cell--2-col">{{home_score}}</div></div></div>{{/games}} {{/sports}}',
@@ -55,7 +55,7 @@ var PointslocalIcons = function() {
 
 var Pointslocal = function(element,opts,cb) {
   this.activeSites = {
-    'sfgate': { 'domain': 'http://imagecdn.pointslocal.com' }
+    'sfgate': { 'domain': 'https://imagecdn.pointslocal.com' }
   };
   this.jQ;
   this.cdn = false;
@@ -95,7 +95,10 @@ var Pointslocal = function(element,opts,cb) {
         break; 
       case 'lakana-sandbox':
         url = 'beta.gocarolinas.com';
-        break;                                          
+        break;
+      case 'akron':
+        url = 'events.ohio.com';
+        break;                                                   
       default:
         url = 'events.'+c+'.com';
         break;
@@ -104,7 +107,7 @@ var Pointslocal = function(element,opts,cb) {
   };
 
   this.resolveDomain = function() {
-    console.log('resolveDomain');
+    // console.log('resolveDomain');
     var site = '';
     var url = '';
     var dom = document.domain;
@@ -112,9 +115,9 @@ var Pointslocal = function(element,opts,cb) {
     var dpart = dom.split('.');
     if (dpart.length > 2) {
       dom = dpart.slice(1).join('.');
-      console.log('new:'+dom);
+      
     } else {
-      console.log(dom);
+
     }
     switch(dom) {
       case 'sfgate.com':
@@ -186,7 +189,7 @@ var Pointslocal = function(element,opts,cb) {
         site = 'gocarolinas';
         url = 'imagecdn.pointslocal.com';
         ugc = 'gocarolinas-secure.pointslocal.com';        
-        break;      
+        break;        
       case 'cmg-web.lakana-sandbox.com':
         site = 'gocarolinas';
         url = 'imagecdn.pointslocal.com';
@@ -196,17 +199,21 @@ var Pointslocal = function(element,opts,cb) {
         site = 'gocarolinas';
         url = 'imagecdn.pointslocal.com';
         ugc = 'gocarolinas-secure.pointslocal.com';        
+        break; 
+      case 'ohio.com':
+        site = 'akron`';
+        url = 'imagecdn.pointslocal.com';
+        ugc = 'akron-community.pointslocal.com/community/authenticate#';        
         break;                                                                                                          
       default:
         site = '';
         break;
     }
-    console.log(site,url);
     return { site: site, url: url, ugc: ugc, domain: dom };
   }
 
   this.construct = function(opts) {
-    console.log('construct');    
+
     this.jQ = $;
     this.templateSet = new PointslocalTemplates;
     if (opts.template) {
@@ -221,7 +228,7 @@ var Pointslocal = function(element,opts,cb) {
     // imports custom stylesheet
     if (opts.stylesheet) {
       var link = document.createElement("link");
-      link.href = 'http://cdn.pointslocal.com/pointslocal.'+opts.stylesheet+'.css';
+      link.href = 'https://dist.pointslocal.com/pointslocal.'+opts.stylesheet+'.css';
       link.type = "text/css";
       link.rel = "stylesheet";
       document.getElementsByTagName("head")[0].appendChild(link);
@@ -257,7 +264,7 @@ var Pointslocal = function(element,opts,cb) {
   }
 
   this.ping = function() {
-    console.log('ping');
+
   }
 
   this.templateFromSelector = function() {
@@ -265,9 +272,9 @@ var Pointslocal = function(element,opts,cb) {
   }
 
   this.constructRequest = function(site,type,options) {
-    console.log('constructRequest');    
+
     if (plself.cdn) {
-      console.log('-> cdn');
+
       options = btoa(JSON.stringify(options));
       req = 'http://cloudy.pointslocal.com/cloudy/'+site+'/api/v1/'+type+'/'+options+'';
     } else {
@@ -276,70 +283,71 @@ var Pointslocal = function(element,opts,cb) {
       for (k in options) {
         o.push(k+'='+options[k]);
       }
-      req = 'http://'+site+'.pointslocal.com/api/v1/'+type+'?'+o.join('&')+'&callback=?';
+      req = 'https://'+site+'.pointslocal.com/api/v1/'+type+'?'+o.join('&')+'&callback=?';
     }
 
     return req
   };
 
   this._PL_Render = function(self,d) {
-    console.log('render');    
-    plself.rendered = Mustache.render(plself.template, d);
 
-    $(plself.element).html(plself.rendered);
-    $(plself.element).find('.plw-pseudo-drop-options li').on('click',function() {
+    plself.rendered = Mustache.render(self.template, d);
+
+    $(self.element).html(plself.rendered);
+    $(self.element).html()
+    $(self.element).find('.plw-pseudo-drop-options li').on('click',function() {
       var opAttr = $(this).attr('data-attribute');
       var opVal = $(this).attr('data-value');
-      plself.opts[opAttr] = opVal;
+      self.opts[opAttr] = opVal;
       var labelTarget = $(this).attr('data-label-target');
       $('#plw-pseudo-drop-'+labelTarget).find('span').html($(this).attr('data-label'));
       $(this).parent().parent().parent().find('.plw-pseudo-drop-inner').removeClass('active');  
       var searchOp = $(this).attr('data-search-options');
-      plself.searchRequest[searchOp] = $(this).attr('data-value');    
+      self.searchRequest[searchOp] = $(this).attr('data-value');    
       // plself.get();
     });
-    $(plself.element).find('#plw-search-init').on('click',function() {
-      plself.searchRequest.search = $(this).parent().parent().find('#plw-search-text').val();
+    $(self.element).find('#plw-search-init').on('click',function() {
+      self.searchRequest.search = $(this).parent().parent().find('#plw-search-text').val();
       var req = [];
-      var searchHost = 'http://' + plself.endpoint + '/events?';
-      for (k in plself.searchRequest) {
-        req.push(k+'='+plself.searchRequest[k]);
+      var searchHost = 'http://' + self.endpoint + '/events?';
+      for (k in self.searchRequest) {
+        req.push(k+'='+self.searchRequest[k]);
       }
       req = req.join('&');
       var searchEndpoint = searchHost + req;
       document.location.href = searchEndpoint;
     });
-    $(plself.element).find('.plw-control-next').on('click',function() {
-      plself.opts['offset'] = plself.opts['offset'] + plself.opts['count'];
-      plself._PLGet();
+    $(self.element).find('.plw-control-next').on('click',function() {
+      self.opts['offset'] = self.opts['offset'] + self.opts['count'];
+      self._PLGet();
     });
-    $(plself.element).find('.plw-control-prev').on('click',function() {
-      plself.opts['offset'] = plself.opts['offset'] - plself.opts['count'];
-      plself._PLGet();
+    $(self.element).find('.plw-control-prev').on('click',function() {
+      self.opts['offset'] = self.opts['offset'] - self.opts['count'];
+      self._PLGet();
     });
-    $(plself.element).find('.plw-pseudo-drop-inner').on('click',function() {
+    $(self.element).find('.plw-pseudo-drop-inner').on('click',function() {
       var show = ($(this).hasClass('active') ? false : true);
       $('.plw-pseudo-drop-inner').removeClass('active');
       if (show) { $(this).addClass('active'); }
     });
-    PointslocalListeners(plself.element,plself.type);
-    $(plself.element).find('.plw-pseudo-drop-datepicker-init').on('click',function() {
+    PointslocalListeners(self.element,self.type);
+    $(self.element).find('.plw-pseudo-drop-datepicker-init').on('click',function() {
 
       $('.datepicker').datepicker({
           autoClose: true, 
-          onSelect: function(ev) { $('.active').removeClass('active'); plself.opts['date'] = ev; plself._PLGet(); } 
+          onSelect: function(ev) { $('.active').removeClass('active'); self.opts['date'] = ev; self._PLGet(); } 
       })
 
     });
 
 
-    if (plself.cb) {
-      setTimeout(plself.cb(self), 1);
+    if (self.cb) {
+      setTimeout(self.cb(self), 1);
     }
   }
 
   this._PLGet = function() {
-    console.log('get');    
+
     var c = [];
 
     // default date
@@ -413,6 +421,7 @@ var Pointslocal = function(element,opts,cb) {
           }
 
           if (plself.companion) {
+
             var compOptions = [];
             if (plself.companion.options.featured && plself.companion.options.featured == 1) {
               plself.companion.options.featured = '1x';
@@ -426,21 +435,23 @@ var Pointslocal = function(element,opts,cb) {
             $.getJSON(compCall, function(cd) {
 
               for(ck in cd.items) {
-                console.log(cd.items);
+
                 cd.items[ck]['site'] = 'http://'+plself.site+'.pointslocal.com';
                 cd.items[ck]['sitecode'] = plself.site;
                 cd.items[ck]['url'] = plself.url;
                 cd.items[ck]['endpoint'] = plself.endpoint;
 
                 if (plself.truncateTitleCharacters && plself.truncateTitleCharacters > 0) {
-                  cd.items[ck]['title'] = cd.items[ck]['title'].substring(0,plself.truncateTitleCharacters);
+                  cd.items[ck]['title'] = '!!~'+cd.items[ck]['title'].substring(0,plself.truncateTitleCharacters);
                 }
               }
               d[plself.companion.key] = cd.items;
+
               plself._PL_Render(self,d);
 
-            })(self)
-            
+            })
+            //(self,$)
+
           } else {
 
             plself._PL_Render(self,d);
