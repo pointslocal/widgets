@@ -98,6 +98,9 @@ var Pointslocal = function(element,opts,cb) {
         break;
       case 'akron':
         url = 'events.ohio.com';
+        break;
+      case 'nycnow':
+        url = 'www.nycnow.com';
         break;                                                   
       default:
         url = 'events.'+c+'.com';
@@ -201,10 +204,15 @@ var Pointslocal = function(element,opts,cb) {
         ugc = 'gocarolinas-secure.pointslocal.com';        
         break; 
       case 'ohio.com':
-        site = 'akron`';
+        site = 'akron';
         url = 'imagecdn.pointslocal.com';
         ugc = 'akron-community.pointslocal.com/community/authenticate#';        
-        break;                                                                                                          
+        break;
+      case 'nycnow.com':
+        site = 'nycnow';
+        url = 'imagecdn.pointslocal.com';
+        ugc = 'nyc-secure.pointslocal.com/community/authenticate#';        
+        break;                                                                                                           
       default:
         site = '';
         break;
