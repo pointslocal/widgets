@@ -1,21 +1,5 @@
 
 
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 #header_wrap, #footer_wrap {
   background-color: #292c38;
   padding: 40px;

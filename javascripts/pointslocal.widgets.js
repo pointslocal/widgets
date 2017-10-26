@@ -284,7 +284,7 @@ var Pointslocal = function(element,opts,cb) {
     if (plself.cdn) {
 
       options = btoa(JSON.stringify(options));
-      req = 'http://cloudy.pointslocal.com/cloudy/'+site+'/api/v1/'+type+'/'+options+'';
+      req = 'https://cloudy.pointslocal.com/cloudy/'+site+'/api/v1/'+type+'/'+options+'';
     } else {
       // console.log('-> nocdn');
       o = [];
@@ -317,7 +317,7 @@ var Pointslocal = function(element,opts,cb) {
     $(self.element).find('#plw-search-init').on('click',function() {
       self.searchRequest.search = $(this).parent().parent().find('#plw-search-text').val();
       var req = [];
-      var searchHost = 'http://' + self.endpoint + '/events?';
+      var searchHost = 'https://' + self.endpoint + '/events?';
       for (k in self.searchRequest) {
         req.push(k+'='+self.searchRequest[k]);
       }

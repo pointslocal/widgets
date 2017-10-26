@@ -1,0 +1,85 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://dist.pointslocal.com/pointslocal.widgets.min.js"></script>
+<link href='https://dist.pointslocal.com/pointslocal.widgets.css' rel='stylesheet' type='text/css'>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<style>
+
+.ui-datepicker-title {
+	text-align: center;
+}
+.ui-datepicker-calendar {
+	width: 100%;
+}
+.ui-datepicker-calendar td {
+text-align: center;
+}
+.ui-datepicker-calendar th {
+	font-size: 12px;
+	padding: 4px;
+}
+.ui-datepicker-calendar td a {
+	display: block;
+	color: #333;
+	text-decoration: none;
+	padding: 4px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border: 1px solid #eee;
+	font-size: 12px;
+}
+.ui-datepicker-calendar td a:hover {
+	background-color: #eee;
+}
+.ui-datepicker-header {
+	background-color: #ccc;
+	padding: 8px;	
+}
+.ui-datepicker-prev, .ui-datepicker-next {
+	font-size: 0px;
+}
+.ui-datepicker-prev, .ui-state-hover .ui-datepicker-prev {
+	float: left;
+	width: 16px;
+	height: 16px;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgc3R5bGU9ImZpbGw6ICNmZmZmZmYiIGhlaWdodD0iMTc5MiIgdmlld0JveD0iMCAwIDE3OTIgMTc5MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTQyNyAzMDFsLTUzMSA1MzEgNTMxIDUzMXExOSAxOSAxOSA0NXQtMTkgNDVsLTE2NiAxNjZxLTE5IDE5LTQ1IDE5dC00NS0xOWwtNzQyLTc0MnEtMTktMTktMTktNDV0MTktNDVsNzQyLTc0MnExOS0xOSA0NS0xOXQ0NSAxOWwxNjYgMTY2cTE5IDE5IDE5IDQ1dC0xOSA0NXoiLz48L3N2Zz4=) !important;
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	background-position: 50% 40%;
+}
+
+.ui-datepicker-next, .ui-state-hover .ui-datepicker-next {
+	float: right;
+	width: 16px;
+	height: 16px;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgc3R5bGU9ImZpbGw6ICNmZmZmZmYiIGhlaWdodD0iMTc5MiIgdmlld0JveD0iMCAwIDE3OTIgMTc5MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTM2MyA4NzdsLTc0MiA3NDJxLTE5IDE5LTQ1IDE5dC00NS0xOWwtMTY2LTE2NnEtMTktMTktMTktNDV0MTktNDVsNTMxLTUzMS01MzEtNTMxcS0xOS0xOS0xOS00NXQxOS00NWwxNjYtMTY2cTE5LTE5IDQ1LTE5dDQ1IDE5bDc0MiA3NDJxMTkgMTkgMTkgNDV0LTE5IDQ1eiIvPjwvc3ZnPg==) !important;
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	background-position: 50% 40%;
+}
+
+
+</style>
+</head>
+
+<body>
+
+
+<div id="pointslocal-rail-search"></div>
+<script>
+  var searchWidget = new Pointslocal('#pointslocal-rail-search', {
+    widget: 'search',
+    site: 'sfgate',
+    companion: { 'key':'events','widget':'events', 'options': { 'count': 3, 'featured': 1 } },
+    vars: { 'title': 'Local Events', 'container_class': 'pointslocal-widget' },    
+    stylesheet: 'hearst',
+    template: 'pointslocal.search.mini'
+  });
+</script>
+
+</body>
+
+</html>
