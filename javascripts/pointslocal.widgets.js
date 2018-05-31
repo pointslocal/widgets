@@ -114,10 +114,10 @@ var Pointslocal = function(element,opts,cb) {
     path = 'events';
     switch(c) {
       case 'sfgate':
-        path = 'wine-events';
+        path = 'wine-event';
         break;
       default:
-        path = 'events';
+        path = 'event';
     }
     return path;
   }
@@ -470,7 +470,7 @@ var Pointslocal = function(element,opts,cb) {
                   cd.items[ck]['title'] = '!!~'+cd.items[ck]['title'].substring(0,plself.truncateTitleCharacters);
                 }
               }
-              d.path = plself.path || 'events';
+              d.path = plself.path || 'event';
               d[plself.companion.key] = cd.items;
 
               plself._PL_Render(self,d);
